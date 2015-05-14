@@ -5,5 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Exam.create([{description:'FUNDAMENTOS FÍSICOS
+e = Exam.create([{description:'FUNDAMENTOS FÍSICOS
 DE LA INFORMÁTICA', date:Date.today}])
+# e.themes.create([
+	# {content:"Carga eléctrica.",hours:Time.now}
+# ])
