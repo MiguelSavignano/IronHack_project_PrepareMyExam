@@ -42,6 +42,7 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    chartist-rails (0.0.1)
     coderay (1.1.0)
     columnize (0.9.0)
     debug_inspector (0.0.2)
@@ -143,6 +144,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  chartist-rails (~> 0.0.1)
   jbuilder (~> 2.0)
   jquery-rails
   pg
