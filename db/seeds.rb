@@ -5,8 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-e = Exam.create([{description:'FUNDAMENTOS FÍSICOS
-DE LA INFORMÁTICA', date:Date.today}])
-# e.themes.create([
-	# {content:"Carga eléctrica.",hours:Time.now}
-# ])
+e = Exam.create({description:'FUNDAMENTOS FÍSICOS
+DE LA INFORMÁTICA', date:Date.today})
+e.themes.create([
+	{content:"Campos eléctricos",minutes:2*60},
+	{content:"Potencial eléctrico.",minutes:2*60+40},
+	{content:"Campos magnéticos.",minutes:4*60},
+	{content:"Circuitos de corriente continua",minutes:5*60+45},
+	{content:"Circuitos de corriente alterna.",minutes:9*60+30},
+	{content:"Dispositivos electrónicos.",minutes:9*60+30},
+	{content:"Familias lógicas.",minutes:9*60+30},
+	{content:"Familias lógicas.",minutes:9*60+30},
+	{content:"Dispositivos fotónicos.",minutes:9*60+30}
+])
