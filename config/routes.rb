@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :subjects
   resources :themes
   resources :exams
   get 'api/themes' => 'themes#bars_data', as: :api_themes
+  get 'api/exams' => 'themes#bars_data', as: :api_exams
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

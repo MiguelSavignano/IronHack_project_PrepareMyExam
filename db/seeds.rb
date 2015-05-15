@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-e = Exam.create({description:'FUNDAMENTOS FÍSICOS
-DE LA INFORMÁTICA', date:Date.today})
+
+e = Exam.create({description:'parcial 1', date:Date.today})
 e.themes.create([
 	{content:"Campos eléctricos",minutes:2*60},
 	{content:"Potencial eléctrico.",minutes:2*60+40},
@@ -18,3 +18,5 @@ e.themes.create([
 	{content:"Familias lógicas.",minutes:2*60+30},
 	{content:"Dispositivos fotónicos.",minutes:1*60+30}
 ])
+s = Subject.create(name:'Fisica')
+s.exams << e
