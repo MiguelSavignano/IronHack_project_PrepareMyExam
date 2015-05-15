@@ -35,7 +35,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'chartist-rails', '~> 0.0.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rspec-rails'
+
   gem 'byebug'
+
   gem 'pry-rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
