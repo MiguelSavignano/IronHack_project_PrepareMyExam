@@ -79,9 +79,10 @@ class ThemesController < ApplicationController
     def theme_params
       params.require(:theme).permit(:subject_id, :description, :minutes)
     end
-    private
 
+    private
     def load_parent
       @subject = Subject.find(params[:subject_id])
     end
+    
 end
