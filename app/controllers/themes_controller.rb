@@ -33,10 +33,10 @@ class ThemesController < ApplicationController
   # POST /themes.json
   def create
     @theme = Theme.new(theme_params)
-
+    @subject.themes << @theme
     respond_to do |format|
       if @theme.save
-        format.html { redirect_to @theme, notice: 'Theme was successfully created.' }
+        format.html { redirect_to [@subject,@theme], notice: 'Theme was successfully created.' }
         format.json { render :show, status: :created, location: @theme }
       else
         format.html { render :new }
@@ -64,7 +64,7 @@ class ThemesController < ApplicationController
   def destroy
     @theme.destroy
     respond_to do |format|
-      format.html { redirect_to themes_url, notice: 'Theme was successfully destroyed.' }
+      format.html { redirect_to [@subject,@theme], notice: 'Theme was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

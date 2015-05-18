@@ -1,18 +1,11 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
-
+  before_filter :load_parent
   # GET /exams
   # GET /exams.json
-   def bars_data
-    content = ExamTheme.first.themes.map{|theme|theme.content} 
-    minutes = Exam.first.themes.map{|theme|theme.minutes} 
-    sum_minutes = Exam.first.themes.reduce(0){|sum,theme|sum+theme.minutes} 
-    data = {content:content, minutes:minutes,sum_minutes:sum_minutes}
-    render json:data
-  end
 
   def index
-    @exams = Exam.all
+    @exams = @subject.exams.all.order(:id)
   end
 
   # GET /exams/1
@@ -77,6 +70,12 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:description, :date)
+      params.require(:exam).permit(:subject_id, :description, :date)
     end
+
+    private
+    def load_parent
+      @subject = Subject.find(params[:subject_id])
+    end
+
 end

@@ -22,7 +22,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'New Theme', new_subject_theme_path %>
 <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 <br>
 
