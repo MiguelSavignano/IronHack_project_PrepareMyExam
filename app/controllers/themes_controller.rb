@@ -1,5 +1,6 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
+  before_filter :load_parent
 
   def bars_data
     descriptions = Theme.all.map{|theme|theme.description} 
@@ -11,7 +12,7 @@ class ThemesController < ApplicationController
   # GET /themes
   # GET /themes.json
   def index
-    @themes = Theme.all
+   @themes = @subject.themes.all.order(:id)
   end
 
   # GET /themes/1
@@ -49,7 +50,7 @@ class ThemesController < ApplicationController
   def update
     respond_to do |format|
       if @theme.update(theme_params)
-        format.html { redirect_to @theme, notice: 'Theme was successfully updated.' }
+        format.html { redirect_to [@subject,@theme], notice: 'Theme was successfully updated.' }
         format.json { render :show, status: :ok, location: @theme }
       else
         format.html { render :edit }
@@ -76,6 +77,11 @@ class ThemesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def theme_params
-      params.require(:theme).permit(:exam_id, :description, :minutes)
+      params.require(:theme).permit(:subject_id, :description, :minutes)
+    end
+    private
+
+    def load_parent
+      @subject = Subject.find(params[:subject_id])
     end
 end
