@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Themes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Content</th>
+      <th>minutes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr>
+        <td><%= theme.exam_id %></td>
+        <td><%= theme.content %></td>
+        <td><%= link_to 'Show', theme %></td>
+        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
+        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Theme', new_theme_path %>
+  <div class="ct-chart ct-golden-section" id="chart2"></div>
+  
+  <script>
+  var contents = [];
+  <% @themes.each do |theme| %>
+    contents.push('<%= theme.content %>');
+  <% end %>
+
+  new Chartist.Bar('.ct-chart', {
+  labels: contents,
+  series: [
+    // [5, 4, 3, 7, 5, 10, 3]
+    <%=@themes.map{|theme|theme.minutes}%>
+  ]
+}, {
+  seriesBarDistance: 10,
+  reverseData: true,
+  horizontalBars: true,
+  axisY: {
+    offset: 70
+  }
+});
+  </script>

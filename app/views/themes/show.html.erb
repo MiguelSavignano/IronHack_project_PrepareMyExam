@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exam:</strong>
+  <%= @theme.exam_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @theme.content %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @theme.hours %>
+</p>
+
+<%= link_to 'Edit', edit_theme_path(@theme) %> |
+<%= link_to 'Back', themes_path %>
