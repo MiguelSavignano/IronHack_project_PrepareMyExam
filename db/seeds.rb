@@ -14,12 +14,11 @@ subject = Subject.create(name:"Fisica",
 						 school_year:1,
 						 description:"fisica es dificil",
 						 teacher:"Fernando Moreno")
-exam1 = Exam.create(description:'parcial 1',
-				   date:Date.today)
-exam2 = Exam.create(description:'parcial 2',
-				   date:Date.today)
-exam3 = Exam.create(description:'parcial 3',
-				   date:Date.today)
+exams = Exam.create([
+	{description:'parcial 1', date:Date.today},
+	{description:'parcial 2', date:Date.today},
+	{description:'parcial 3', date:Date.today}
+		])
 themes = Theme.create([
 	{description:"Campos eléctricos",minutes:2*60},
 	{description:"Potencial eléctrico.",minutes:2*60+40},
@@ -34,15 +33,9 @@ themes = Theme.create([
 school.courses << course
 course.subjects << subject
 
-subject.exams << exam1
-subject.exams << exam2
-subject.exams << exam3
+subject.exams = exams
+subject.themes = themes
 
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[0].id)
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[1].id)
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[2].id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[3].id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[4].id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[5].id)
-ExamTheme.create(exam_id:exam3.id,theme_id:themes[6].id)
-ExamTheme.create(exam_id:exam3.id,theme_id:themes[7].id)
+Exam.find(1).themes = themes[0..2]
+Exam.find(2).themes = themes[2..4]
+Exam.find(3).themes = themes[4..7]
