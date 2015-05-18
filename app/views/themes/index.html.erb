@@ -16,9 +16,6 @@
       <tr>
         <td><%= theme.description %></td>
         <td><%= theme.minutes %></td>
-        <td><%= link_to 'Show', theme %></td>
-        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
-        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,7 +23,8 @@
 
 <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 <br>
-<%= link_to 'New Theme', new_theme_path %>
+<%= link_to 'New Theme', new_school_course_subject_theme_path %>
+
   <div class="ct-chart ct-golden-section" id="chart2"></div>
   
   <script>

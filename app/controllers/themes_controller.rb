@@ -22,7 +22,6 @@ class ThemesController < ApplicationController
   # GET /themes/new
   def new
     @theme = Theme.new
-    @names = @themes.map{|theme|theme.description} 
  end
 
   # GET /themes/1/edit
