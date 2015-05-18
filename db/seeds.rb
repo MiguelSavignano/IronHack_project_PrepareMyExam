@@ -5,10 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-school = School.create(name:"Universidad carlos 3"
-					  ,website:"www.uc3m.com")
-course = Course.create(name:"ingeneria informatica"
-					  ,description:"la mejor carrera universitaria")
+school = School.create(name:"Universidad carlos 3",
+					   website:"www.uc3m.com")
+course = Course.create(name:"ingeneria informatica",
+				       description:"la mejor carrera universitaria")
 subject = Subject.create(name:"Fisica",
 						 season:2015,
 						 school_year:1,
@@ -21,18 +21,18 @@ exam2 = Exam.create(description:'parcial 2',
 exam3 = Exam.create(description:'parcial 3',
 				   date:Date.today)
 themes = Theme.create([
-	{content:"Campos eléctricos",minutes:2*60},
-	{content:"Potencial eléctrico.",minutes:2*60+40},
-	{content:"Campos magnéticos.",minutes:4*60},
-	{content:"Circuitos de corriente continua",minutes:5*60+45},
-	{content:"Circuitos de corriente alterna.",minutes:2*60+30},
-	{content:"Dispositivos electrónicos.",minutes:9*60+30},
-	{content:"Familias lógicas.",minutes:4*60+30},
-	{content:"Dispositivos fotónicos.",minutes:1*60+30}
+	{description:"Campos eléctricos",minutes:2*60},
+	{description:"Potencial eléctrico.",minutes:2*60+40},
+	{description:"Campos magnéticos.",minutes:4*60},
+	{description:"Circuitos de corriente continua",minutes:5*60+45},
+	{description:"Circuitos de corriente alterna.",minutes:2*60+30},
+	{description:"Dispositivos electrónicos.",minutes:9*60+30},
+	{description:"Familias lógicas.",minutes:4*60+30},
+	{description:"Dispositivos fotónicos.",minutes:1*60+30}
 ])
 
 school.courses << course
-course.subject << subject
+course.subjects << subject
 
 ExamTheme.create(exam_id:exam1.id,theme_id:themes[0].id,subject_id:subject.id)
 ExamTheme.create(exam_id:exam1.id,theme_id:themes[1].id,subject_id:subject.id)

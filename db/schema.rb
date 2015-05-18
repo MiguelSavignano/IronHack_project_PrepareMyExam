@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20150518104052) do
 
   create_table "study_sessions", force: :cascade do |t|
     t.integer  "duration"
-    t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "exam_theme_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -66,11 +66,10 @@ ActiveRecord::Schema.define(version: 20150518104052) do
   end
 
   create_table "themes", force: :cascade do |t|
-    t.integer  "subject_id"
-    t.text     "content"
     t.integer  "minutes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
