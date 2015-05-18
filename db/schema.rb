@@ -11,17 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518084840) do
+ActiveRecord::Schema.define(version: 20150518104052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
+    t.integer  "school_id"
     t.string   "name"
     t.text     "description"
-    t.integer  "school_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "exam_themes", force: :cascade do |t|
+    t.integer  "subject_id"
+    t.integer  "exam_id"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exams", force: :cascade do |t|
@@ -47,13 +55,18 @@ ActiveRecord::Schema.define(version: 20150518084840) do
   end
 
   create_table "subjects", force: :cascade do |t|
+    t.integer  "course_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "school_year"
+    t.string   "description"
+    t.string   "teacher"
+    t.integer  "season"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "themes", force: :cascade do |t|
-    t.integer  "exam_id"
+    t.integer  "subject_id"
     t.text     "content"
     t.integer  "minutes"
     t.datetime "created_at", null: false
