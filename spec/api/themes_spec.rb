@@ -14,12 +14,11 @@ describe 'themes API endpoint' do
 									 school_year:1,
 									 description:"fisica es dificil",
 									 teacher:"Fernando Moreno")
-			exam1 = Exam.create(description:'parcial 1',
-							   date:Date.today)
-			exam2 = Exam.create(description:'parcial 2',
-							   date:Date.today)
-			exam3 = Exam.create(description:'parcial 3',
-							   date:Date.today)
+			exams = Exam.create([
+				{description:'parcial 1', date:Date.today},
+				{description:'parcial 2', date:Date.today},
+				{description:'parcial 3', date:Date.today}
+					])
 			themes = Theme.create([
 				{description:"Campos eléctricos",minutes:2*60},
 				{description:"Potencial eléctrico.",minutes:2*60+40},
@@ -30,36 +29,38 @@ describe 'themes API endpoint' do
 				{description:"Familias lógicas.",minutes:4*60+30},
 				{description:"Dispositivos fotónicos.",minutes:1*60+30}
 			])
+
 			school.courses << course
 			course.subjects << subject
-			ExamTheme.create(exam_id:exam1.id,theme_id:themes[0].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam1.id,theme_id:themes[1].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam1.id,theme_id:themes[2].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam2.id,theme_id:themes[3].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam2.id,theme_id:themes[4].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam2.id,theme_id:themes[5].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam3.id,theme_id:themes[6].id,subject_id:subject.id)
-			ExamTheme.create(exam_id:exam3.id,theme_id:themes[7].id,subject_id:subject.id)
+
+			subject.exams = exams
+			subject.themes = themes
+
+			Exam.first.themes = themes[2..4]
+			Exam.second.themes = themes[2..4]
+			Exam.third.themes = themes[0..2]
+			# Exam.find(2).themes = themes[2..4]
+			# Exam.find(3).themes = themes[4..7]
 		}
-		
+	
 		it 'get bars_data themes' do
 			get api_themes_path
 			expect(JSON.parse(response.body).size).to eq 3
 		end
 
-		it ' get bars_data content' do
+		it ' get bars_data descriptions' do
 			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:content].size).to eq 9
+			expect(JSON.parse(response.body, {:symbolize_names => true})[:descriptions].size).to eq 8
 		end
 
 		it 'get bars_data minutes' do
 			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:minutes].size).to eq 9
+			expect(JSON.parse(response.body, {:symbolize_names => true})[:minutes].size).to eq 8
 		end
 
 		it 'get bars_data sum minutes' do
 			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:sum_minutes]).to eq 2095
+			expect(JSON.parse(response.body, {:symbolize_names => true})[:sum_minutes]).to eq 1945
 		end
 
 		# it 'get bars_data sum minutes of all exams' do

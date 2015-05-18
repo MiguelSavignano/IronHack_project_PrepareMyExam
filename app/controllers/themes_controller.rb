@@ -2,10 +2,10 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def bars_data
-    content = Theme.all.map{|theme|theme.content} 
+    descriptions = Theme.all.map{|theme|theme.description} 
     minutes = Theme.all.map{|theme|theme.minutes} 
     sum_minutes = Theme.all.reduce(0){|sum,theme|sum+theme.minutes} 
-    data = {content:content, minutes:minutes,sum_minutes:sum_minutes}
+    data = {descriptions:descriptions, minutes:minutes,sum_minutes:sum_minutes}
     render json:data
   end
   # GET /themes
@@ -22,7 +22,7 @@ class ThemesController < ApplicationController
   # GET /themes/new
   def new
     @theme = Theme.new
-    @names = @themes.map{|theme|theme.content} 
+    @names = @themes.map{|theme|theme.description} 
  end
 
   # GET /themes/1/edit
@@ -77,6 +77,6 @@ class ThemesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def theme_params
-      params.require(:theme).permit(:exam_id, :content, :hours)
+      params.require(:theme).permit(:exam_id, :description, :minutes)
     end
 end

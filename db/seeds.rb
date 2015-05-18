@@ -36,6 +36,6 @@ course.subjects << subject
 subject.exams = exams
 subject.themes = themes
 
-Exam.find(1).themes = themes[0..2]
-Exam.find(2).themes = themes[2..4]
-Exam.find(3).themes = themes[4..7]
+subject.exams.first.themes = themes[0..2]
+subject.exams.second.themes = themes[3..5]
+subject.exams.third.themes = themes[6..7]
