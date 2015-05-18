@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150518104052) do
   end
 
   create_table "themes", force: :cascade do |t|
+    t.integer  "subject_id"
     t.integer  "minutes"
     t.text     "description"
     t.datetime "created_at",  null: false

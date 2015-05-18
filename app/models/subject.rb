@@ -1,4 +1,5 @@
 class Subject < ActiveRecord::Base
 	belongs_to :course
-	has_many :exam_themes
+	has_many :themes
+	has_many :exams
 end

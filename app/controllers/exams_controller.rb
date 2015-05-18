@@ -4,7 +4,7 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
    def bars_data
-    content = Exam.first.themes.map{|theme|theme.content} 
+    content = ExamTheme.first.themes.map{|theme|theme.content} 
     minutes = Exam.first.themes.map{|theme|theme.minutes} 
     sum_minutes = Exam.first.themes.reduce(0){|sum,theme|sum+theme.minutes} 
     data = {content:content, minutes:minutes,sum_minutes:sum_minutes}

@@ -34,11 +34,15 @@ themes = Theme.create([
 school.courses << course
 course.subjects << subject
 
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[0].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[1].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam1.id,theme_id:themes[2].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[3].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[4].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam2.id,theme_id:themes[5].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam3.id,theme_id:themes[6].id,subject_id:subject.id)
-ExamTheme.create(exam_id:exam3.id,theme_id:themes[7].id,subject_id:subject.id)
+subject.exams << exam1
+subject.exams << exam2
+subject.exams << exam3
+
+ExamTheme.create(exam_id:exam1.id,theme_id:themes[0].id)
+ExamTheme.create(exam_id:exam1.id,theme_id:themes[1].id)
+ExamTheme.create(exam_id:exam1.id,theme_id:themes[2].id)
+ExamTheme.create(exam_id:exam2.id,theme_id:themes[3].id)
+ExamTheme.create(exam_id:exam2.id,theme_id:themes[4].id)
+ExamTheme.create(exam_id:exam2.id,theme_id:themes[5].id)
+ExamTheme.create(exam_id:exam3.id,theme_id:themes[6].id)
+ExamTheme.create(exam_id:exam3.id,theme_id:themes[7].id)
