@@ -9,7 +9,7 @@
   <strong>Date:</strong>
   <%= @exam.date %>
 </p>
-
+<%= link_to 'Destroy', [@school,@course,@subject,@exam], method: :delete ,data: { confirm: 'Are you sure?' }%>
 <%= link_to 'Edit', edit_school_course_subject_exam_path(@school,@course,@subject,@exam) %> |
 <%= link_to 'Back', school_course_subject_exams_path %>
 
