@@ -1,6 +1,35 @@
 <h1>Editing Exam</h1>
 
-<%= render 'form' %>
+<%= form_for [@school,@course,@subject,@exam] do |f| %>
+  <% if @exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
 
+      <ul>
+      <% @exam.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+
+<p>Add themes </p>
+ <% (@subject.themes - @exam.themes).each do |theme| %>
+  <input type="checkbox" name="theme[<%=theme.description%>]" value="<%= theme.id %>"><%= theme.description %></p>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 <%= link_to 'Show', [@school,@course,@subject,@exam] %> |
 <%= link_to 'Back', school_course_subject_exams_path %>
