@@ -5,6 +5,7 @@ class ExamsController < ApplicationController
   # GET /exams.json
 
   def index
+    @subject=School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
     @exams = @subject.exams.all.order(:id)
   end
 
@@ -29,7 +30,7 @@ class ExamsController < ApplicationController
     @subject.exams << @exam
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to [@subject,@exam], notice: 'Exam was successfully created.' }
+        format.html { redirect_to [@school,@course,@subject,@exam], notice: 'Exam was successfully created.' }
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class ExamsController < ApplicationController
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        format.html { redirect_to [@subject,@exam], notice: 'Exam was successfully updated.' }
+        format.html { redirect_to [@school,@course,@subject,@exam], notice: 'Exam was successfully updated.' }
         format.json { render :show, status: :ok, location: @exam }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class ExamsController < ApplicationController
   def destroy
     @exam.destroy
     respond_to do |format|
-      format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
+      format.html { redirect_to [@school,@course,@subject,@exam], notice: 'Exam was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,7 +76,9 @@ class ExamsController < ApplicationController
 
     private
     def load_parent
-      @subject = Subject.find(params[:subject_id])
+      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
+      @course = School.find(params[:school_id]).courses.find(params[:course_id])
+      @school = School.find(params[:school_id])
     end
 
 end

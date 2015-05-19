@@ -16,14 +16,12 @@
       <tr>
         <td><%= exam.description %></td>
         <td><%= exam.date %></td>
-        <td><%= link_to 'Show', subject_exam_path(@subject,exam)%></td>
-        <td><%= link_to 'Edit', edit_subject_exam_path(@subject,exam) %></td>
-        <td><%= link_to 'Destroy',id: exam, controller: "exams", action: "destroy", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= link_to 'Show', school_course_subject_exam_path(@school,@course,@subject,exam)%></td>
+        <td><%= link_to 'Edit', edit_school_course_subject_exam_path(@school,@course,@subject,exam) %></td>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Exam', new_subject_exam_path %>
+<%= link_to 'New Exam', new_school_course_subject_exam_path %>

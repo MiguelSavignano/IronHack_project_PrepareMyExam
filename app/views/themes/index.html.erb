@@ -16,13 +16,13 @@
       <tr>
         <td><%= theme.description %></td>
         <td><%= theme.minutes %></td>
-        <td><%= link_to 'Show', subject_theme_path(@subject,theme) %></<td>
-        <td><%= link_to 'Edit', edit_subject_theme_path(@subject,theme) %></td>
+        <td><%= link_to 'Show', school_course_subject_theme_path(@school,@course,@subject,theme) %><td>
+        <td><%= link_to 'Edit', edit_school_course_subject_theme_path(@school,@course,@subject,theme) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Theme', new_subject_theme_path %>
+<%= link_to 'New Theme', new_school_course_subject_exam_path %>
 <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 <br>
 

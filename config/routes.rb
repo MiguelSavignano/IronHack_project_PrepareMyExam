@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :schools  
-    resources :courses 
+  resources :schools do
+    resources :courses do 
       resources :subjects do
         resources :exams
         resources :themes
       end
+    end
+  end
   get 'api/themes' => 'themes#bars_data', as: :api_themes
   # get 'api/exams' => 'themes#bars_data', as: :api_exams
   # The priority is based upon order of creation: first created -> highest priority.
