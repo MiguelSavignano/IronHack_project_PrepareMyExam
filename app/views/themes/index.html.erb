@@ -16,8 +16,8 @@
       <tr>
         <td><%= theme.description %></td>
         <td><%= theme.minutes %></td>
-        <td><%= link_to 'Show', controller: "themes", action: "show", id: theme %></td>
-        <td><%= link_to 'Edit', controller: "themes", action: "edit", id: theme %></td>
+        <td><%= link_to 'Show', subject_theme_path(@subject,theme) %></<td>
+        <td><%= link_to 'Edit', edit_subject_theme_path(@subject,theme) %></td>
       </tr>
     <% end %>
   </tbody>
