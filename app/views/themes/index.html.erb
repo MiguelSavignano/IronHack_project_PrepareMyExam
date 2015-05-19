@@ -26,26 +26,6 @@
 <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 <br>
 
-  <div class="ct-chart ct-golden-section" id="chart2"></div>
+ 
   
-  <script>
-  var contents = [];
-  <% @themes.each do |theme| %>
-    contents.push('<%= theme.description %>');
-  <% end %>
-
-  new Chartist.Bar('.ct-chart', {
-  labels: contents,
-  series: [
-    // [5, 4, 3, 7, 5, 10, 3]
-    <%=@themes.map{|theme|theme.minutes}%>
-  ]
-}, {
-  seriesBarDistance: 10,
-  reverseData: true,
-  horizontalBars: true,
-  axisY: {
-    offset: 70
-  }
-});
-  </script>
+ 

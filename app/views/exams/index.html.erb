@@ -16,8 +16,8 @@
       <tr>
         <td><%= exam.description %></td>
         <td><%= exam.date %></td>
-        <td><%= link_to 'Show', controller: "exams", action: "show", id: exam %></td>
-        <td><%= link_to 'Edit', controller: "exams", action: "edit", id: exam %></td>
+        <td><%= link_to 'Show', subject_exam_path(@subject,exam)%></td>
+        <td><%= link_to 'Edit', edit_subject_exam_path(@subject,exam) %></td>
         <td><%= link_to 'Destroy',id: exam, controller: "exams", action: "destroy", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
