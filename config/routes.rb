@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :schools do
     resources :courses do 
       resources :subjects do
-        resources :exams
+        resources :exams do
+          resources :study_sessions
+        end
         resources :themes
       end
     end
