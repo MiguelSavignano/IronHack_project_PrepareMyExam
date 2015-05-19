@@ -5,7 +5,7 @@ class ExamsController < ApplicationController
   # GET /exams.json
 
   def index
-    @subject=School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
+    @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
     @exams = @subject.exams.all.order(:id)
   end
 

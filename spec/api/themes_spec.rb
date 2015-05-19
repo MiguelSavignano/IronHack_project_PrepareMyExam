@@ -39,29 +39,27 @@ describe 'themes API endpoint' do
 			Exam.first.themes = themes[2..4]
 			Exam.second.themes = themes[2..4]
 			Exam.third.themes = themes[0..2]
-			# Exam.find(2).themes = themes[2..4]
-			# Exam.find(3).themes = themes[4..7]
 		}
 	
-		it 'get bars_data themes' do
-			get api_themes_path
-			expect(JSON.parse(response.body).size).to eq 3
-		end
+		# it 'get bars_data themes' do
+		# 	get api_themes_path
+		# 	expect(JSON.parse(response.body).size).to eq 3
+		# end
 
-		it ' get bars_data descriptions' do
-			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:descriptions].size).to eq 8
-		end
+		# it ' get bars_data descriptions' do
+		# 	get api_themes_path
+		# 	expect(JSON.parse(response.body, {:symbolize_names => true})[:descriptions].size).to eq 8
+		# end
 
-		it 'get bars_data minutes' do
-			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:minutes].size).to eq 8
-		end
+		# it 'get bars_data minutes' do
+		# 	get api_themes_path
+		# 	expect(JSON.parse(response.body, {:symbolize_names => true})[:minutes].size).to eq 8
+		# end
 
-		it 'get bars_data sum minutes' do
-			get api_themes_path
-			expect(JSON.parse(response.body, {:symbolize_names => true})[:sum_minutes]).to eq 1945
-		end
+		# it 'get bars_data sum minutes' do
+		# 	get api_themes_path
+		# 	expect(JSON.parse(response.body, {:symbolize_names => true})[:sum_minutes]).to eq 1945
+		# end
 
 		# it 'get bars_data sum minutes of all exams' do
 		# 	get api_themes_path
