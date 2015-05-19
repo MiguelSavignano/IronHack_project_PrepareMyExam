@@ -26,7 +26,11 @@ class ExamsController < ApplicationController
   # POST /exams
   # POST /exams.json
   def create
+    binding.pry
     @exam = Exam.new(exam_params)
+    id_themes = params["theme"].values.map(&:to_i)
+    themes = Theme.find(id_themes)
+    @exam.themes << themes
     @subject.exams << @exam
     respond_to do |format|
       if @exam.save

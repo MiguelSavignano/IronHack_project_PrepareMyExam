@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+ 
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
@@ -19,7 +19,13 @@
     <%= f.label :date %><br>
     <%= f.date_select :date %>
   </div>
+
+ <% @subject.themes.each do |theme| %>
+  <input type="checkbox" name="theme[<%=theme.description%>]" value="<%= theme.id %>"><%= theme.description %></p>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+  
