@@ -1,0 +1,10 @@
+<h1>Index Courses</h1>	
+
+<% @schools.each do |school| %>
+	<b><%=school.name%> </b>
+	<% school.courses.each do |course| %>
+		
+        <p> <%=course.name %> <%= link_to 'Show subjects', school_course_subjects_path(school,course) %> </p>
+
+	<% end %>
+<% end %>
