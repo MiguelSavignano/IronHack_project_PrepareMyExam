@@ -1,10 +1,11 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_filter :load_parent
 
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = @course.subjects
   end
 
   # GET /subjects/1
@@ -71,4 +72,11 @@ class SubjectsController < ApplicationController
     def subject_params
       params.require(:subject).permit(:name)
     end
+
+    private
+    def load_parent
+      @course = School.find(params[:school_id]).courses.find(params[:course_id])
+      @school = School.find(params[:school_id])
+    end
+
 end

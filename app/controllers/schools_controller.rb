@@ -4,12 +4,13 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    @schools = School.where(user_id:current_user.id)
   end
 
   # GET /schools/1
   # GET /schools/1.json
   def show
+    @courses = @school.courses
   end
 
   # GET /schools/new

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @study_session.date %>
+</p>
+
+<p>
+  <strong>Exam:</strong>
+  <%= @study_session.exam_id %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @study_session.theme_id %>
+</p>
+<%= link_to 'Destroy', [@school,@course,@subject,@exam,@study_session], method: :delete ,data: { confirm: 'Are you sure?' }%>
+
+<%= link_to 'Edit', edit_school_course_subject_exam_study_session_path(@school,@course,@subject,@exam,@study_session) %> |
+<%= link_to 'Back', school_course_subject_exam_study_sessions_path %>

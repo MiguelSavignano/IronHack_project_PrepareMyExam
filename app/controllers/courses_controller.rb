@@ -1,10 +1,11 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_filter :load_parent
 
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = @school.courses
   end
 
   # GET /courses/1
@@ -71,4 +72,9 @@ class CoursesController < ApplicationController
     def course_params
       params[:course]
     end
+ private
+    def load_parent
+      @school = School.find(params[:school_id])
+    end
+
 end

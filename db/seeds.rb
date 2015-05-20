@@ -5,21 +5,41 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-school = School.create(name:"Universidad carlos 3",
-					   website:"www.uc3m.com")
-course = Course.create(name:"ingeneria informatica",
+uc3m = School.create(name:"Universidad carlos 3",
+					   website:"www.uc3m.es")
+
+urjc = School.create(name:"Universidad Rey Juancarlos",
+					   website:"www.urjc.es")
+
+upm = School.create(name:"Universidad Politecnica",
+					   website:"www.upm.es")
+
+uned = School.create(name:"Universidad Nacional de Educación a Distancia",
+					   website:"www.uned.es")
+
+
+uned_informatica = Course.create(name:"Ingeneria informatica",
 				       description:"la mejor carrera universitaria")
-subject = Subject.create(name:"Fisica",
+
+uned_electronica = Course.create(name:"Ingeneria electronica",
+				       description:"la mejor carrera universitaria")
+
+urjc_informatica = Course.create(name:"Ingeneria informatica",
+				       description:"la mejor carrera universitaria")
+
+uc3m_informatica = Course.create(name:"Ingeneria informatica",
+				       description:"la mejor carrera universitaria")
+
+uc3m_derecho = Course.create(name:"Derecho",
+				       description:"la mejor carrera universitaria")
+
+uned_fisica = Subject.create(name:"Fisica",
 						 season:2015,
 						 school_year:1,
 						 description:"fisica es dificil",
 						 teacher:"Fernando Moreno")
-exams = Exam.create([
-	{description:'parcial 1', date:Date.today},
-	{description:'parcial 2', date:Date.today},
-	{description:'parcial 3', date:Date.today}
-		])
-themes = Theme.create([
+
+uned_fisica_themes = Theme.create([
 	{description:"Campos eléctricos",minutes:2*60},
 	{description:"Potencial eléctrico.",minutes:2*60+40},
 	{description:"Campos magnéticos.",minutes:4*60},
@@ -30,12 +50,24 @@ themes = Theme.create([
 	{description:"Dispositivos fotónicos.",minutes:1*60+30}
 ])
 
-school.courses << course
-course.subjects << subject
+uned_fisica_exams = Exam.create([
+	{description:'parcial 1', date:Date.today},
+	{description:'parcial 2', date:Date.today},
+	{description:'parcial 3', date:Date.today}
+		])
 
-subject.exams = exams
-subject.themes = themes
+uned_fisica_exams.first.themes << uned_fisica_themes[0..2]
+uned_fisica_exams.second.themes << uned_fisica_themes[3..5]
+uned_fisica_exams.third.themes << uned_fisica_themes[6..7]
 
-subject.exams.first.themes = themes[0..2]
-subject.exams.second.themes = themes[3..5]
-subject.exams.third.themes = themes[6..7]
+uned_fisica.exams = uned_fisica_exams
+uned_fisica.themes = uned_fisica_themes
+
+uned_informatica.subjects << uned_fisica
+
+uned.courses << uned_informatica
+
+miguel = User.create(email:"migue.masx@gmail.com",
+	        password:"miguels66",
+	        password_confirmation:"miguels66")
+miguel.schools << uned

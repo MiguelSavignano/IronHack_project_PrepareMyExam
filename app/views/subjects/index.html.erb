@@ -14,9 +14,8 @@
     <% @subjects.each do |subject| %>
       <tr>
         <td><%= subject.name %></td>
-        <td><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show exams', school_course_subject_exams_path(@school,@course,subject) %></td>
+        <td><%= link_to 'Show', school_course_subject_path(@school,@course,subject) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Subject', new_subject_path %>
+<%= link_to 'New Subject', new_school_course_subject_path(@school,@course,@subject) %>
