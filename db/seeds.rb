@@ -67,6 +67,8 @@ uned_informatica.subjects << uned_fisica
 
 uned.courses << uned_informatica
 
+uc3m.courses << uc3m_derecho
+
 miguel = User.create(email:"migue.masx@gmail.com",
 	        password:"miguels66",
 	        password_confirmation:"miguels66")
