@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def index_courses
+		@schools = School.where(user_id:current_user.id)
+	end
+
 	def home
 		@user_name = current_user.email
 	end

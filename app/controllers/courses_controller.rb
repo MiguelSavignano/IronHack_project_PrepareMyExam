@@ -8,6 +8,9 @@ class CoursesController < ApplicationController
     @courses = @school.courses
   end
 
+  def index_home
+      @schools = School.where(user_id:current_user)
+  end
   # GET /courses/1
   # GET /courses/1.json
   def show
@@ -75,6 +78,9 @@ class CoursesController < ApplicationController
  private
     def load_parent
       @school = School.find(params[:school_id])
+      @schools = School.where(user_id:current_user.id)
     end
+
+
 
 end
