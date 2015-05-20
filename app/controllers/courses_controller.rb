@@ -77,7 +77,10 @@ class CoursesController < ApplicationController
     end
  private
     def load_parent
-      @schools = School.where(user_id:current_user.id)
+      @school = School.where(id:params[:school_id],user_id:current_user.id).first
+      unless @school
+        redirect_to schools_path
+      end
     end
 
 
