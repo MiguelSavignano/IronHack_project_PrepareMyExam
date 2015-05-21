@@ -4,15 +4,16 @@
   <thead>
   <tr>
     <th>Exam description</th>
+    <th>Themes estimate time </th>
   </tr>
     </thead>
 <tbody>
 
 <% @schools.each do |school| %>
-	<%=school.name%>
+	<b> <%=school.name%> <i class="mdi-navigation-chevron-right"></i> </b>
 	
 	<% school.courses.each do |course| %>
-         <%=course.name %>  
+         <%=course.name %> <i class="mdi-navigation-chevron-right"></i>
 		
 		<% course.subjects.each do |subject| %>
 	         <%=subject.name %>  
@@ -20,6 +21,8 @@
 			<% subject.exams.each do |exam| %>
 		        <tr>
 		        	<td> <%=exam.description %>  </td>
+		        	<td> <%=exam.sum_themes %>  </td>
+   				    <td><%= link_to 'Show', school_course_subject_exam_path(school,course,subject,exam)%></td>
 				</tr>
 			<% end %>
 	
