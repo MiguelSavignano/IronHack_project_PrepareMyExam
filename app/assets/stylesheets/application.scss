@@ -12,4 +12,8 @@
  *
  *= require chartist.min
  */
+ @import "materialize/components/color";
+$primary-color: color("amber", "darken-1") !default;
+$secondary-color: color( "blue", "lighten-3") !default;
+$button-color: color("blue", "base") !default;
  @import "materialize";
