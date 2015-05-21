@@ -1,6 +1,7 @@
 <h1>Home</h1>
 <%=@user_name %>
 
-<%= link_to 'Generate Exams', controller: "users", action: "create_exams" %>
+<%= link_to 'Generate Exams', generate_exams_path %>
 <%= link_to 'Show my schools', schools_path %>
 <%= link_to 'Show my courses', courses_path %>
+<%= link_to 'Show my exams', courses_path %>

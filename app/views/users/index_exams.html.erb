@@ -1,0 +1,31 @@
+<h1>Index Exams</h1>	
+
+<table>
+  <thead>
+  <tr>
+    <th>Exam description</th>
+  </tr>
+    </thead>
+<tbody>
+
+<% @schools.each do |school| %>
+	<%=school.name%>
+	
+	<% school.courses.each do |course| %>
+         <%=course.name %>  
+		
+		<% course.subjects.each do |subject| %>
+	         <%=subject.name %>  
+		
+			<% subject.exams.each do |exam| %>
+		        <tr>
+		        	<td> <%=exam.description %>  </td>
+				</tr>
+			<% end %>
+	
+		<% end %>
+
+
+	<% end %>
+
+<% end %>

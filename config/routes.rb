@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   end
   get '/' => 'users#redirect', as: :redirect 
   get '/home' => 'users#home', as: :home 
-  get '/generate_exams' => 'users#create_exams', as: :create_exams
+  get '/generate_exams' => 'users#generate_exams', as: :generate_exams
   get 'api/themes' => 'themes#bars_data', as: :api_themes
   get '/courses' => 'users#index_courses', as: :courses
+  get '/exams' => 'users#index_exams', as: :exams
   # get 'api/exams' => 'themes#bars_data', as: :api_exams
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

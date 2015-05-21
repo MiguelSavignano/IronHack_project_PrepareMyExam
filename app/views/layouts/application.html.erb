@@ -8,7 +8,23 @@
 </head>
 <body>
 
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+
+          <li><%= link_to 'Show my exams', exams_path %></li>
+          <li><%= link_to 'Show my courses', courses_path %></li>
+          <li><%= link_to 'Show my schools', schools_path %></li>
+          <li class="active"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
 <%= yield %>
 
 </body>

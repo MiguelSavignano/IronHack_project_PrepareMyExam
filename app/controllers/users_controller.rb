@@ -8,6 +8,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def generate_exams
+		s = School.where(user_id:1).first
+		s_attributes = s.attributes.except!("id","created_at","updated_at","user_id")
+		new_school = School.new(s_attributes)
+		current_user.schools << new_school
+		redirect_to schools_path
+	end
+
+	def index_exams
+		@schools = School.where(user_id:current_user.id)
+	end
+
 	def index_courses
 		@schools = School.where(user_id:current_user.id)
 	end

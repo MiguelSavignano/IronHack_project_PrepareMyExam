@@ -75,6 +75,7 @@ class CoursesController < ApplicationController
     def course_params
       params[:course]
     end
+    
  private
     def load_parent
       @school = School.where(id:params[:school_id],user_id:current_user.id).first
