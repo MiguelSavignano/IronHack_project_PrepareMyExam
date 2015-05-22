@@ -5,10 +5,10 @@ class StudySessionsController < ApplicationController
   # GET /study_sessions
   # GET /study_sessions.json
   def index
-    @study_sessions = StudySession.all
+    @study_sessions = StudySession.where(user:current_user)
   end
 
-  # GET /study_sessions/1
+  # GET /study_sessions/1_
   # GET /study_sessions/1.json
   def show
   end
@@ -16,6 +16,7 @@ class StudySessionsController < ApplicationController
   # GET /study_sessions/new
   def new
     @study_session = StudySession.new
+
   end
 
   # GET /study_sessions/1/edit
@@ -26,7 +27,6 @@ class StudySessionsController < ApplicationController
   # POST /study_sessions.json
   def create
     @study_session = StudySession.new(study_session_params)
-
     respond_to do |format|
       if @study_session.save
         format.html { redirect_to [@school,@course,@subject,@exam,@study_session], notice: 'Study session was successfully created.' }
@@ -70,7 +70,11 @@ class StudySessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_session_params
-      params.require(:study_session).permit(:date, :exam_id, :theme_id)
+      params_study_session=params.require(:study_session).permit(:date, :exam_id, :theme_id)
+      params_study_session[:exam_id]= params[:exam_id]
+      params_study_session[:theme_id]= params[:theme_id]
+      params_study_session[:user_id]= current_user.id
+      params_study_session
     end
 
     private

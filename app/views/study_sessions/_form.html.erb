@@ -12,18 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.date_field :date, :class => "datepicker" %>
   </div>
   <div class="field">
-    <%= f.label :exam_id %><br>
-    <%= f.number_field :exam_id %>
-  </div>
-  <div class="field">
-    <%= f.label :theme_id %><br>
-    <%= f.number_field :theme_id %>
+    <% themes_array = @exam.themes.map { |theme| [theme.description, theme.id] } %>
+    <%= select_tag(:theme_id, options_for_select(themes_array)) %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+<%end %>
+<script> 
+$(document).ready(function() {
+    $('select').material_select();
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+});
+</script>  

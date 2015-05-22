@@ -4,7 +4,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.where(user_id:current_user.id)
+    @schools = current_user.schools
   end
 
   # GET /schools/1
@@ -76,4 +76,5 @@ class SchoolsController < ApplicationController
     def school_params
       params[:school]
     end
+    
 end

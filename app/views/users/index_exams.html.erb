@@ -5,6 +5,7 @@
   <tr>
     <th>Exam description</th>
     <th>Themes estimate time </th>
+    <th>Minutes Study</th>
   </tr>
     </thead>
 <tbody>
@@ -22,7 +23,10 @@
 		        <tr>
 		        	<td> <%=exam.description %>  </td>
 		        	<td> <%=exam.sum_themes %>  </td>
+		        	<td> <%=exam.sum_study_sessions(current_user) %>  </td>
+		        	
    				    <td><%= link_to 'Show', school_course_subject_exam_path(school,course,subject,exam)%></td>
+   				    <td><%= link_to 'New study session', new_school_course_subject_exam_study_session_path(school,course,subject,exam)%></td>
 				</tr>
 			<% end %>
 	

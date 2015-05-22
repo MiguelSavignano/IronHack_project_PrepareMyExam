@@ -55,32 +55,36 @@ uned_fisica_exams = Exam.create([
 	{description:'parcial 2', date:Date.today},
 	{description:'parcial 3', date:Date.today}
 		])
+uned.courses << uned_informatica
+uc3m.courses << uc3m_derecho
+uned_informatica.subjects << uned_fisica
+
+uned_fisica.exams = uned_fisica_exams
+uned_fisica.themes = uned_fisica_themes
 
 uned_fisica_exams.first.themes << uned_fisica_themes[0..2]
 uned_fisica_exams.second.themes << uned_fisica_themes[3..5]
 uned_fisica_exams.third.themes << uned_fisica_themes[6..7]
 
-uned_fisica.exams = uned_fisica_exams
-uned_fisica.themes = uned_fisica_themes
-
-uned_informatica.subjects << uned_fisica
-
-uned.courses << uned_informatica
-
-uc3m.courses << uc3m_derecho
-
-
-
 miguel = User.create(email:"migue.masx@gmail.com",
 	        password:"miguels66",
 	        password_confirmation:"miguels66")
+
 miguel2 = User.create(email:"miguel@gmail.com",
 	        password:"miguels66",
 	        password_confirmation:"miguels66")
 
+s1=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
+s2=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
+s3=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
+s4=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
+
 miguel.schools << uned
+miguel.exams = uned_fisica_exams
+miguel.study_sessions << s1 
 
-StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first,date:Date.today)
-
-# School.users << miguel2 
-# miguel2.schools << 
+miguel2.schools << uned 
+miguel2.exams = uned_fisica_exams
+miguel2.study_sessions << s2 
+miguel2.study_sessions << s3 
+miguel2.study_sessions << s4 

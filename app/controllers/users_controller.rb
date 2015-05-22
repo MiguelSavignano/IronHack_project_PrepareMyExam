@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 	end
 
 	def index_exams
-		@schools = School.where(user_id:current_user.id)
+		@schools =current_user.schools
 	end
 
 	def index_courses
