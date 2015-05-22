@@ -81,7 +81,4 @@ class CoursesController < ApplicationController
       @school = School.where(id:params[:school_id],user_id:current_user.id).first
       redirect_to schools_path unless @school
     end
-
-
-
 end
