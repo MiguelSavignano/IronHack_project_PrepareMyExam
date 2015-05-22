@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522001347) do
+ActiveRecord::Schema.define(version: 20150522082409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,29 +31,51 @@ ActiveRecord::Schema.define(version: 20150522001347) do
   add_index "courses_schools", ["course_id"], name: "index_courses_schools_on_course_id", using: :btree
   add_index "courses_schools", ["school_id"], name: "index_courses_schools_on_school_id", using: :btree
 
-  create_table "exam_themes", force: :cascade do |t|
-    t.integer  "subject_id"
-    t.integer  "exam_id"
-    t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "courses_subjects", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "subject_id"
   end
 
+  add_index "courses_subjects", ["course_id"], name: "index_courses_subjects_on_course_id", using: :btree
+  add_index "courses_subjects", ["subject_id"], name: "index_courses_subjects_on_subject_id", using: :btree
+
   create_table "exams", force: :cascade do |t|
-    t.integer  "subject_id"
     t.text     "description"
     t.date     "date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  create_table "exams_subjects", force: :cascade do |t|
+    t.integer "exam_id"
+    t.integer "subject_id"
+  end
+
+  add_index "exams_subjects", ["exam_id"], name: "index_exams_subjects_on_exam_id", using: :btree
+  add_index "exams_subjects", ["subject_id"], name: "index_exams_subjects_on_subject_id", using: :btree
+
+  create_table "exams_themes", force: :cascade do |t|
+    t.integer "exam_id"
+    t.integer "theme_id"
+  end
+
+  add_index "exams_themes", ["exam_id"], name: "index_exams_themes_on_exam_id", using: :btree
+  add_index "exams_themes", ["theme_id"], name: "index_exams_themes_on_theme_id", using: :btree
+
   create_table "schools", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "name"
     t.string   "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "schools_users", force: :cascade do |t|
+    t.integer "school_id"
+    t.integer "user_id"
+  end
+
+  add_index "schools_users", ["school_id"], name: "index_schools_users_on_school_id", using: :btree
+  add_index "schools_users", ["user_id"], name: "index_schools_users_on_user_id", using: :btree
 
   create_table "study_sessions", force: :cascade do |t|
     t.date     "date"
@@ -64,7 +86,6 @@ ActiveRecord::Schema.define(version: 20150522001347) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.integer  "course_id"
     t.string   "name"
     t.integer  "school_year"
     t.string   "description"

@@ -69,7 +69,18 @@ uned.courses << uned_informatica
 
 uc3m.courses << uc3m_derecho
 
+
+
 miguel = User.create(email:"migue.masx@gmail.com",
 	        password:"miguels66",
 	        password_confirmation:"miguels66")
+miguel2 = User.create(email:"miguel@gmail.com",
+	        password:"miguels66",
+	        password_confirmation:"miguels66")
+
 miguel.schools << uned
+
+StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first,date:Date.today)
+
+# School.users << miguel2 
+# miguel2.schools << 

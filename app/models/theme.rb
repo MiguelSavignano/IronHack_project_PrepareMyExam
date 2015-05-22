@@ -1,6 +1,6 @@
 class Theme < ActiveRecord::Base
 	belongs_to :subject
-	has_many :exam_themes
-	has_many :exams, through: :exam_themes
+	has_many :study_sessions
+	has_and_belongs_to_many :exams
 end
 
