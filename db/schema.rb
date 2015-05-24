@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150522104221) do
   add_index "courses_subjects", ["subject_id"], name: "index_courses_subjects_on_subject_id", using: :btree
 
   create_table "exams", force: :cascade do |t|
+    t.integer  "subject_id"
     t.text     "description"
     t.date     "date"
     t.datetime "created_at",  null: false

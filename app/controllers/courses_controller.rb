@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def index_home
-      @schools = School.where(user_id:current_user)
+      @schools = School.where(user:current_user)
   end
   # GET /courses/1
   # GET /courses/1.json
@@ -78,7 +78,7 @@ class CoursesController < ApplicationController
     
  private
     def load_parent
-      @school = School.where(id:params[:school_id],user_id:current_user.id).first
+      @school = current_user.schools.find(params[:school_id])
       redirect_to schools_path unless @school
     end
 end

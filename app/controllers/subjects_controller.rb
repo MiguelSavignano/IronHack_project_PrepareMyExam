@@ -75,8 +75,8 @@ class SubjectsController < ApplicationController
 
     private
     def load_parent
+      @school = current_user.schools.find(params[:school_id])
       @course = School.find(params[:school_id]).courses.find(params[:course_id])
-      @school = School.find(params[:school_id])
     end
 
 end

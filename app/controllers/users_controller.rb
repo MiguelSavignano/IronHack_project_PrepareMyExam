@@ -17,11 +17,11 @@ class UsersController < ApplicationController
 	end
 
 	def index_exams
-		@schools =current_user.schools
+		@schools = current_user.schools
 	end
 
-	def index_courses
-		@schools = School.where(user_id:current_user.id)
+	def index_subjects
+		@schools = current_user.subjects
 	end
 
 	def home

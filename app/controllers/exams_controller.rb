@@ -7,8 +7,7 @@ class ExamsController < ApplicationController
   # GET /exams.json
 
   def index
-    @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-    @exams = @subject.exams.all.order(:id)
+    @exams = current_user.exams.where(subject:@subject)
   end
 
   # GET /exams/1
@@ -82,9 +81,9 @@ class ExamsController < ApplicationController
 
     private
     def load_parent
-      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-      @course = School.find(params[:school_id]).courses.find(params[:course_id])
-      @school = School.find(params[:school_id])
+      @school = current_user.schools.find(params[:school_id])
+      @course = @school.courses.find(params[:course_id])
+      @subject = @course.subjects.find(params[:subject_id])
     end
 
 end

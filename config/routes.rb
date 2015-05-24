@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/home' => 'users#home', as: :home 
   get '/generate_exams' => 'users#generate_exams', as: :generate_exams
   get 'api/themes' => 'themes#bars_data', as: :api_themes
-  get '/courses' => 'users#index_courses', as: :courses
+  get '/subjects' => 'users#index_subjects', as: :subjects
   get '/exams' => 'users#index_exams', as: :exams
   # get 'api/exams' => 'themes#bars_data', as: :api_exams
   # The priority is based upon order of creation: first created -> highest priority.
