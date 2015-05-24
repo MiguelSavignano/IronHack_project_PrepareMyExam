@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_and_belongs_to_many :schools
-  has_and_belongs_to_many :exams
+  has_and_belongs_to_many :subjects
   has_many :study_sessions
 end

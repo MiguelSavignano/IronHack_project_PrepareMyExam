@@ -19,24 +19,30 @@ uned = School.create(name:"Universidad Nacional de Educación a Distancia",
 
 
 uned_informatica = Course.create(name:"Ingeneria informatica",
-				       description:"la mejor carrera universitaria")
+				       description:"uned la mejor carrera universitaria")
 
 uned_electronica = Course.create(name:"Ingeneria electronica",
-				       description:"la mejor carrera universitaria")
+				       description:"uned la mejor carrera universitaria")
 
 urjc_informatica = Course.create(name:"Ingeneria informatica",
-				       description:"la mejor carrera universitaria")
+				       description:" urjc la mejor carrera universitaria")
 
 uc3m_informatica = Course.create(name:"Ingeneria informatica",
-				       description:"la mejor carrera universitaria")
+				       description:" uc3m la mejor carrera universitaria")
 
 uc3m_derecho = Course.create(name:"Derecho",
-				       description:"la mejor carrera universitaria")
+				       description:"uc3m la mejor carrera universitaria")
 
 uned_fisica = Subject.create(name:"Fisica",
 						 season:2015,
 						 school_year:1,
-						 description:"fisica es dificil",
+						 description:"uned informatica fisica es dificil",
+						 teacher:"Fernando Moreno")
+
+uc3m_derecho_de_contratos = Subject.create(name:"Derecho de los Contratos",
+						 season:2015,
+						 school_year:2,
+						 description:"uc3m derecho es facil",
 						 teacher:"Fernando Moreno")
 
 uned_fisica_themes = Theme.create([
@@ -51,20 +57,22 @@ uned_fisica_themes = Theme.create([
 ])
 
 uned_fisica_exams = Exam.create([
-	{description:'parcial 1', date:Date.today},
-	{description:'parcial 2', date:Date.today},
-	{description:'parcial 3', date:Date.today}
+	{description:'Parcial 1', date:Date.today},
+	{description:'Parcial 2', date:Date.today},
+	{description:'Parcial 3', date:Date.today},
+	{description:'Examen final', date:Date.today}
 		])
 uned.courses << uned_informatica
 uc3m.courses << uc3m_derecho
-uned_informatica.subjects << uned_fisica
 
+uned_informatica.subjects << uned_fisica
 uned_fisica.exams = uned_fisica_exams
 uned_fisica.themes = uned_fisica_themes
 
 uned_fisica_exams.first.themes << uned_fisica_themes[0..2]
 uned_fisica_exams.second.themes << uned_fisica_themes[3..5]
 uned_fisica_exams.third.themes << uned_fisica_themes[6..7]
+uned_fisica_exams[3].themes << uned_fisica_themes[0..7]
 
 miguel = User.create(email:"migue.masx@gmail.com",
 	        password:"miguels66",
@@ -79,12 +87,9 @@ s2=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.firs
 s3=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
 s4=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
 
-miguel.schools << uned
-miguel.exams = uned_fisica_exams
+miguel.subjects << uned_fisica
 miguel.study_sessions << s1 
 
-miguel2.schools << uned 
-miguel2.exams = uned_fisica_exams
 miguel2.study_sessions << s2 
 miguel2.study_sessions << s3 
 miguel2.study_sessions << s4 
