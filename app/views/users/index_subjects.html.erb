@@ -1,0 +1,7 @@
+<h1>Index Subjects</h1>	
+
+		<% @subjects.each do |subject| %>
+	        <p> <%=subject.name %> <%= link_to 'Show exams', school_course_subject_exams_path(school,course,subject) %> </p>
+		<% end %>
+	<% end %>
+<% end %>
