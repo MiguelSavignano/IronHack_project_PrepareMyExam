@@ -16,8 +16,6 @@
       <tr>
         <td><%= theme.description %></td>
         <td><%= theme.minutes %></td>
-        <td><%= link_to 'Show', school_course_subject_theme_path(@school,@course,@subject,theme) %><td>
-        <td><%= link_to 'Edit', edit_school_course_subject_theme_path(@school,@course,@subject,theme) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,6 +24,33 @@
 <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 <br>
 
+<div class="row">
+      <div class="col s6">
+ <div class="ct-chart ct-golden-section" id="chart2"></div>
+</div>
+</div>
+
+
+ <script>
+  var contents = [];
+  <% @exam.themes.each do |theme| %>
+    contents.push('<%= theme.description %>');
+  <% end %>
+
+  new Chartist.Bar('.ct-chart', {
+  labels: contents,
+  series: [
+    <%=@exam.themes.map{|theme|theme.minutes}%>
+  ]
+}, {
+  seriesBarDistance: 10,
+  reverseData: true,
+  horizontalBars: true,
+  axisY: {
+    offset: 70
+  }
+});
+  </script>
  
   
  

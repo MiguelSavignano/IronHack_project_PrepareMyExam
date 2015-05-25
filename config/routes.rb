@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :courses do 
       resources :subjects do
         resources :exams do
+          resources :themes
           resources :study_sessions
         end
-        resources :themes
       end
     end
   end

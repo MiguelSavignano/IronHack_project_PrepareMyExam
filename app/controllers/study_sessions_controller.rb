@@ -70,11 +70,20 @@ class StudySessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_session_params
-      params_study_session=params.require(:study_session).permit(:date, :exam_id, :theme_id)
+      params_study_session=params.require(:study_session).permit(:date, :exam_id, :theme_id, :minutes)
+      hours_minutes=params[:study_session][:minutes]
+      hours_minutes = to_minutes(hours_minutes)
+      params_study_session[:minutes]= hours_minutes
       params_study_session[:exam_id]= params[:exam_id]
       params_study_session[:theme_id]= params[:theme_id]
       params_study_session[:user_id]= current_user.id
-      params_study_session
+      params_study_session  
+    end
+
+    def to_minutes(hours_minutes)
+      hours=hours_minutes[0..1].to_i
+      minutes=hours_minutes[3..4].to_i
+      minutes = minutes + hours*60
     end
 
     private
@@ -84,4 +93,6 @@ class StudySessionsController < ApplicationController
       @course = School.find(params[:school_id]).courses.find(params[:course_id])
       @school = School.find(params[:school_id])
     end
+
+    
 end

@@ -14,5 +14,6 @@ def sum_study_sessions(current_user)
 	StudySession.where(user:current_user,exam:self).reduce(0){|sum,x|sum+x.minutes}
 end
 
+
 end
 

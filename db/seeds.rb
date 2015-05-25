@@ -37,6 +37,12 @@ uned_fisica = Subject.create(name:"Fisica",
 						 season:2015,
 						 school_year:1,
 						 description:"uned informatica fisica es dificil",
+						 teacher:"Marcos")
+	
+uned_quimica = Subject.create(name:"Quimica",
+						 season:2015,
+						 school_year:1,
+						 description:"uned informatica fisica es dificil",
 						 teacher:"Fernando Moreno")
 
 uc3m_derecho_de_contratos = Subject.create(name:"Derecho de los Contratos",
@@ -56,23 +62,50 @@ uned_fisica_themes = Theme.create([
 	{description:"Dispositivos fotónicos.",minutes:1*60+30}
 ])
 
+uned_quimica_themes = Theme.create([
+	{description:"Campos eléctricos",minutes:2*60},
+	{description:"Potencial eléctrico.",minutes:2*60+40},
+	{description:"Campos magnéticos.",minutes:4*60},
+	{description:"Circuitos de corriente continua",minutes:5*60+45},
+	{description:"Circuitos de corriente alterna.",minutes:2*60+30},
+	{description:"Dispositivos electrónicos.",minutes:9*60+30},
+	{description:"Familias lógicas.",minutes:4*60+30},
+	{description:"Dispositivos fotónicos.",minutes:1*60+30}
+])
+
 uned_fisica_exams = Exam.create([
-	{description:'Parcial 1', date:Date.today},
-	{description:'Parcial 2', date:Date.today},
-	{description:'Parcial 3', date:Date.today},
-	{description:'Examen final', date:Date.today}
+	{description:'Parcial 1', date:"2015-06-15".to_date},
+	{description:'Parcial 2', date:"2015-07-20".to_date},
+	{description:'Parcial 3', date:"2015-08-15".to_date},
+	{description:'Examen final', date:"2015-09-18".to_date}
+		])
+
+uned_quimica_exams = Exam.create([
+	{description:'Parcial 1', date:"2015-06-10".to_date},
+	{description:'Parcial 2', date:"2015-07-20".to_date},
+	{description:'Parcial 3', date:"2015-08-28".to_date},
+	{description:'Examen final', date:"2015-09-10".to_date}
 		])
 uned.courses << uned_informatica
 uc3m.courses << uc3m_derecho
 
 uned_informatica.subjects << uned_fisica
+uned_informatica.subjects << uned_quimica
+
 uned_fisica.exams = uned_fisica_exams
 uned_fisica.themes = uned_fisica_themes
+uned_quimica.exams = uned_quimica_exams
+uned_quimica.themes = uned_quimica_themes
 
 uned_fisica_exams.first.themes << uned_fisica_themes[0..2]
 uned_fisica_exams.second.themes << uned_fisica_themes[3..5]
 uned_fisica_exams.third.themes << uned_fisica_themes[6..7]
 uned_fisica_exams[3].themes << uned_fisica_themes[0..7]
+
+uned_quimica_exams.first.themes << uned_quimica_themes[0..2]
+uned_quimica_exams.second.themes << uned_quimica_themes[3..5]
+uned_quimica_exams.third.themes << uned_quimica_themes[6..7]
+uned_quimica_exams[3].themes << uned_quimica_themes[0..7]
 
 miguel = User.create(email:"migue.masx@gmail.com",
 	        password:"miguels66",
@@ -88,6 +121,7 @@ s3=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.firs
 s4=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
 
 miguel.subjects << uned_fisica
+miguel.subjects << uned_quimica
 miguel.study_sessions << s1 
 
 miguel2.study_sessions << s2 

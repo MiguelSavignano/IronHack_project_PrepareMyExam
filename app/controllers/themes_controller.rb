@@ -12,8 +12,7 @@ class ThemesController < ApplicationController
   # GET /themes
   # GET /themes.json
   def index
-   @subject=School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-   @themes = @subject.themes.all.order(:id)
+   @themes = @exam.themes.order(:id)
   end
 
   # GET /themes/1
@@ -83,9 +82,10 @@ class ThemesController < ApplicationController
 
    private
     def load_parent
-      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-      @course = School.find(params[:school_id]).courses.find(params[:course_id])
       @school = School.find(params[:school_id])
+      @course = School.find(params[:school_id]).courses.find(params[:course_id])
+      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
+      @exam = @subject.exams.find(params[:exam_id])
     end
     
 end

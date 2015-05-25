@@ -1,3 +1,5 @@
+
+
 <%= form_for [@school,@course,@subject,@exam,@study_session] do |f| %>
   <% if @study_session.errors.any? %>
     <div id="error_explanation">
@@ -18,10 +20,16 @@
     <% themes_array = @exam.themes.map { |theme| [theme.description, theme.id] } %>
     <%= select_tag(:theme_id, options_for_select(themes_array)) %>
   </div>
+  <div class="field">
+    <%= f.time_field :minutes %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <%end %>
+
+
+
 <script> 
 $(document).ready(function() {
     $('select').material_select();

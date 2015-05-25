@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
+
 	def redirect
 		if current_user
 			redirect_to home_path
@@ -17,11 +18,11 @@ class UsersController < ApplicationController
 	end
 
 	def index_exams
-		@schools = current_user.schools
+		@subjects = current_user.subjects
 	end
 
 	def index_subjects
-		@schools = current_user.subjects
+		@subjects = current_user.subjects
 	end
 
 	def home
