@@ -5,7 +5,7 @@ class StudySessionsController < ApplicationController
   # GET /study_sessions
   # GET /study_sessions.json
   def index
-    @study_sessions = StudySession.where(user:current_user)
+    @study_sessions = StudySession.where(user:current_user).order(:theme_id)
   end
 
   # GET /study_sessions/1_

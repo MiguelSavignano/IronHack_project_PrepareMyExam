@@ -80,8 +80,9 @@ ActiveRecord::Schema.define(version: 20150524120550) do
     t.integer  "subject_id"
     t.integer  "minutes"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "number_chapter"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|

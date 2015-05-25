@@ -85,7 +85,7 @@ class ThemesController < ApplicationController
       @school = School.find(params[:school_id])
       @course = School.find(params[:school_id]).courses.find(params[:course_id])
       @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-      @exam = @subject.exams.find(params[:exam_id])
+      @exam = @subject.exams.find(params[:exam_id]) if params[:exam_id]!=nil 
     end
     
 end

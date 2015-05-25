@@ -1,6 +1,24 @@
-<h1>Editing Theme</h1>
+<%= form_for [@school,@course,@subject,@theme] do |f| %>
+  <% if @theme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @theme.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Show',  subject_theme_path %>
-<%= link_to 'Back', subject_themes_path %>
+    <div class="file-field input-field">
+      <input class="file-path validate" type="text"/>
+      <div class="btn">
+        <span>File</span>
+        <input type="file" />
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<%end %>

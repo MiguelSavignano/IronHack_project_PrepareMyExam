@@ -52,25 +52,25 @@ uc3m_derecho_de_contratos = Subject.create(name:"Derecho de los Contratos",
 						 teacher:"Fernando Moreno")
 
 uned_fisica_themes = Theme.create([
-	{description:"Campos eléctricos",minutes:2*60},
-	{description:"Potencial eléctrico.",minutes:2*60+40},
-	{description:"Campos magnéticos.",minutes:4*60},
-	{description:"Circuitos de corriente continua",minutes:5*60+45},
-	{description:"Circuitos de corriente alterna.",minutes:2*60+30},
-	{description:"Dispositivos electrónicos.",minutes:9*60+30},
-	{description:"Familias lógicas.",minutes:4*60+30},
-	{description:"Dispositivos fotónicos.",minutes:1*60+30}
+	{description:"Campos eléctricos",minutes:2*60,number_chapter:1},
+	{description:"Potencial eléctrico.",minutes:2*60+40,number_chapter:2},
+	{description:"Campos magnéticos.",minutes:4*60,number_chapter:3},
+	{description:"Circuitos de corriente continua",minutes:5*60+45,number_chapter:4},
+	{description:"Circuitos de corriente alterna.",minutes:2*60+30,number_chapter:5},
+	{description:"Dispositivos electrónicos.",minutes:9*60+30,number_chapter:6},
+	{description:"Familias lógicas.",minutes:4*60+30,number_chapter:7},
+	{description:"Dispositivos fotónicos.",minutes:1*60+30,number_chapter:8}
 ])
 
 uned_quimica_themes = Theme.create([
-	{description:"Campos eléctricos",minutes:2*60},
-	{description:"Potencial eléctrico.",minutes:2*60+40},
-	{description:"Campos magnéticos.",minutes:4*60},
-	{description:"Circuitos de corriente continua",minutes:5*60+45},
-	{description:"Circuitos de corriente alterna.",minutes:2*60+30},
-	{description:"Dispositivos electrónicos.",minutes:9*60+30},
-	{description:"Familias lógicas.",minutes:4*60+30},
-	{description:"Dispositivos fotónicos.",minutes:1*60+30}
+	{description:"Campos eléctricos",minutes:2*60,number_chapter:1},
+	{description:"Potencial eléctrico.",minutes:2*60+40,number_chapter:2},
+	{description:"Campos magnéticos.",minutes:4*60,number_chapter:3},
+	{description:"Circuitos de corriente continua",minutes:5*60+45,number_chapter:4},
+	{description:"Circuitos de corriente alterna.",minutes:2*60+30,number_chapter:5},
+	{description:"Dispositivos electrónicos.",minutes:9*60+30,number_chapter:6},
+	{description:"Familias lógicas.",minutes:4*60+30,number_chapter:7},
+	{description:"Dispositivos fotónicos.",minutes:1*60+30,number_chapter:8}
 ])
 
 uned_fisica_exams = Exam.create([

@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Themes</h1>
 
 <table>
   <thead>
@@ -16,6 +15,8 @@
       <tr>
         <td><%= theme.description %></td>
         <td><%= theme.minutes %></td>
+        <td>
+        <%= link_to 'Upload notes', controller: "themes", action: "edit", id: theme %></td> 
       </tr>
     <% end %>
   </tbody>

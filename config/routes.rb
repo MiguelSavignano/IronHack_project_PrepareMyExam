@@ -7,6 +7,7 @@ Rails.application.routes.draw do
           resources :themes
           resources :study_sessions
         end
+        resources :themes
       end
     end
   end
