@@ -115,15 +115,23 @@ miguel2 = User.create(email:"miguel@gmail.com",
 	        password:"miguels66",
 	        password_confirmation:"miguels66")
 
-s1=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
-s2=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
-s3=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
-s4=StudySession.create(exam:uned_fisica_exams.first,theme:uned_fisica_exams.first.themes.first)
+s1=StudySession.create(exam:uned_fisica_exams.first,
+					   theme:uned_fisica_exams.first.themes.first,
+					   date:"2015-05-10".to_date,minutes:45)
+s2=StudySession.create(exam:uned_fisica_exams.first,
+						theme:uned_fisica_exams.first.themes.first,
+						date:"2015-05-11".to_date,minutes:120)
+s3=StudySession.create(exam:uned_fisica_exams.first,
+						theme:uned_fisica_exams.first.themes.first,
+						date:"2015-05-12".to_date,minutes:100)
+s4=StudySession.create(exam:uned_fisica_exams.first,
+						theme:uned_fisica_exams.first.themes.first,
+						date:"2015-05-13".to_date,minutes:30)
 
 miguel.subjects << uned_fisica
 miguel.subjects << uned_quimica
 miguel.study_sessions << s1 
+miguel.study_sessions << s2 
+miguel.study_sessions << s3 
+miguel.study_sessions << s4 
 
-miguel2.study_sessions << s2 
-miguel2.study_sessions << s3 
-miguel2.study_sessions << s4 

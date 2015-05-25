@@ -19,7 +19,7 @@
           <tr>
             <td><%= study_session.date %></td>
             <td><%= study_session.theme.description %></td>
-            <td><%= study_session.theme.minutes %></td>
+            <td><%= study_session.minutes %></td>
           </tr>
         <% end %>
       </tbody>
@@ -34,10 +34,14 @@
 </div>
 
 <script>
+var dates = [];
+  <% @study_sessions.each do |theme| %>
+    dates.push('<%= theme.date %>');
+  <% end %>
 new Chartist.Line('.ct-chart', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  labels: dates,
   series: [
-    [1, 3, 4, 5, 6]
+    <%=@study_sessions.map{|study_session|study_session.minutes}%>
   ]
 }, {
   fullWidth: true,
