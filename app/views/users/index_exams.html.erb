@@ -5,14 +5,14 @@
 		 <%= subject.course.name %> <i class="mdi-navigation-chevron-right"></i>
 		 <%= subject.name %> <i class="mdi-navigation-chevron-right"></i>
 		</blockquote>
-		<table>
+		<table class="bordered">
 		  <thead>
 		  <tr>
 		    <th>Exam description</th>
 		    <th>Themes estimate time </th>
 		    <th>Minutes Study</th>
 		    <th>Study %</th>
-		    <th>Date</th>
+		    <th>Missing dates</th>
 		    <th>Study session</th>
 		    <th>Themes</th>
 		  </tr>
@@ -20,7 +20,7 @@
 		<% subject.exams.each do |exam| %>
 			<tbody>
 			    <tr>
-			    	<td> <%=exam.description %>  </td>
+			    	<td> <b><%=exam.description %></b> <span style="font-size: 75%"><%=exam.date %></span>  </td>
 			    	<td> <%=exam.sum_themes %>  </td>
 			    	<td> <%=exam.sum_study_sessions(current_user) %>  </td>
 			    	<td> <%=exam.sum_study_sessions(current_user)*100 /exam.sum_themes %>  </td>
