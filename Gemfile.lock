@@ -43,6 +43,11 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chartist-rails (0.0.1)
     chartkick (1.3.2)
     coderay (1.1.0)
@@ -178,6 +183,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  carrierwave
   chartist-rails (~> 0.0.1)
   chartkick (~> 1.3.2)
   devise

@@ -36,6 +36,7 @@ gem 'devise'
 gem 'chartist-rails', '~> 0.0.1'
 gem 'chartkick', '~> 1.3.2'
 gem 'materialize-sass'
+gem 'carrierwave'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
