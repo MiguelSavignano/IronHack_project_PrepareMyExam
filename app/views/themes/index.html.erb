@@ -1,6 +1,8 @@
 <link  rel="stylesheet" type="text/css" href="/assets/css/line_chart_animation.css">
 <div class="row">
  <div class="col s6">
+ <ul id="staggered-test">
+<li>
 <div class="card-panel indigo lighten-5">
   <table>
     <thead>
@@ -17,14 +19,15 @@
           <td><%= theme.description %></td>
           <td><%= theme.minutes %></td>
           <td>
-          <%= link_to 'Upload notes', controller: "themes", action: "edit", id: theme %></td> 
+          <%= link_to "Upload note",edit_school_course_subject_exam_theme_path(@school,@course,@subject,@exam,theme)%></td> 
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'New Theme', new_school_course_subject_exam_path %>
   <p>Total minutes: <%=@themes.reduce(0){|sum,theme|sum+theme.minutes} %></p>
 </div>
+</li>
+</ul>
 </div>
 
 
@@ -36,6 +39,9 @@
 </div>
 
  <script>
+ $( document ).ready(function() {
+    Materialize.showStaggeredList('#staggered-test')
+  });
   var contents = [];
   <% @exam.themes.each do |theme| %>
     contents.push('<%= theme.description %>');

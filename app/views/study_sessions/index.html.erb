@@ -4,6 +4,8 @@
 
 <div class="row">
  <div class="col s6">
+<ul id="staggered-test">
+<li class="" style="transform: translateX(-0px); opacity: 1;">    
     <div class="card-panel indigo lighten-5">
     <table>
       <thead>
@@ -17,9 +19,9 @@
       <tbody>
         <% @study_sessions.each do |study_session| %>
           <tr>
-            <td><%= study_session.date %></td>
-            <td><%= study_session.theme.description %></td>
-            <td><%= study_session.minutes %></td>
+            <td style="transform: translateX(0px); opacity: 1;"><%= study_session.date %></td>
+            <td style="transform: translateX(0px); opacity: 1;"><%= study_session.theme.description %></td>
+            <td style="transform: translateX(0px); opacity: 1;"><%= study_session.minutes %></td>
           </tr>
         <% end %>
       </tbody>
@@ -29,11 +31,17 @@
   <div class="col s6">
     <div class="card-panel indigo lighten-5">
       <div class="ct-chart ct-golden-section"></div>
+      </li>
+      </ul>
     </div>
   </div>
 </div>
 
 <script>
+$( document ).ready(function() {
+  Materialize.showStaggeredList('#staggered-test')
+});
+
 var dates = [];
   <% @study_sessions.each do |theme| %>
     dates.push('<%= theme.date %>');
