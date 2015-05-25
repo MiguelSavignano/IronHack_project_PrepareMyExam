@@ -1,288 +1,48 @@
 <p id="notice"><%= notice %></p>
-<style type="text/css">
-  
-@import "compass/css3";
 
-@mixin keyframes($name) {
-  @-webkit-keyframes #{$name} {
-    @content;
-  }
-  @-moz-keyframes #{$name} {
-    @content;
-  }
-  @-ms-keyframes #{$name} {
-    @content;
-  }
-  @keyframes #{$name} {
-    @content;
-  }
-}
+<link  rel="stylesheet" type="text/css" href="/assets/css/line_chart_animation.css">
 
-@mixin animation($name, $params) {
-  -webkit-animation: #{$name} $params; /* Safari 4+ */
-  -moz-animation: #{$name} $params; /* Fx 5+ */
-  -o-animation: #{$name} $params; /* Opera 12+ */
-  animation: #{$name} $params; /* IE 10+ */
-}
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
-
-$color-background: #67686E;
-
-@include keyframes(dashoffset) {
-  0% {
-    stroke-dashoffset: 0px;
-  }
-
-  100% {
-    stroke-dashoffset: -20px;
-  }
-}
-
-@include keyframes(pulse) {
-  0% {
-    stroke-dashoffset: 0px;
-  }
-
-  100% {
-    stroke-dashoffset: -1000px;
-  }
-}
-
-@include keyframes(bouncing-stroke) {
-  0% {
-    stroke-width: 10px;
-  }
-
-  50% {
-    stroke-width: 15px;
-  }
-
-  100% {
-    stroke-width: 10px;
-  }
-}
-
-@include keyframes(exploding-stroke) {
-  0% {
-    stroke-width: 2px;
-    opacity: 1;
-  }
-
-  100% {
-    stroke-width: 40px;
-    opacity: 0;
-  }
-}
-
-@include keyframes(teeter) {
-  0% {
-    @include transform(perspective(500px) rotateX(-1deg) rotateY(-4deg) rotateZ(0deg));
-  }
-  
-  25% {
-    @include transform(perspective(500px) rotateX(1deg) rotateY(2deg) rotateZ(0deg));
-  }
-
-  50% {
-    @include transform(perspective(500px) rotateX(3deg) rotateY(4deg) rotateZ(0deg));
-  }
-  
-  75% {
-    @include transform(perspective(500px) rotateX(1deg) rotateY(2deg) rotateZ(0deg));
-  }
-  
-  100% {
-    @include transform(perspective(500px) rotateX(-1deg) rotateY(-4deg) rotateZ(0deg));
-  }
-}
-
-a {
-  color: #d70206;
-  text-decoration: none;
-}
-
-.button {
-  display: inline-block;
-  margin-top: 2em;
-  color: white;
-  padding: 1em;
-  background-color: #d70206;
-  font-size: 1em;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-html, body {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  background-color: $color-background;
-  color: shade($color-background, 60%);
-  text-align: center;
-}
-
-h1 {
-  font-size: 26px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  line-height: 1;
-}
-
-.tagline {
-  font-size: 16px;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-p {
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.container {
-  max-width: 640px;
-  margin: 2em auto;
-  background-color: shade($color-background, 5%);
-  
-  @include box-shadow(10px 10px shade($color-background, 10%));
-  @include animation(teeter, 10s linear infinite);
-  
-  > .ct-chart {
-    .ct-label {
-      
-    }
-    
-    .ct-series {
-      &.ct-series-a {
-        .ct-line {
-          stroke-dasharray: 5px;
-          
-          @include animation(dashoffset, 1s linear infinite);
-        }
-        
-        .ct-point {
-          @include animation(bouncing-stroke, 0.6s linear infinite);
-        }
-      }
-      
-      &.ct-series-b {
-        .ct-line {
-          stroke-width: 10px;
-          stroke-dasharray: 15px 5px;
-          
-          @include animation(dashoffset, 2s linear infinite);
-        }
-        
-        .ct-point {
-          @include animation(exploding-stroke, 1.8s linear infinite);
-        }
-      }
-      
-      &.ct-series-c {
-        .ct-line {
-          stroke-width: 2px;
-          stroke-dasharray: 20px 180px;
-          
-          @include animation(pulse, 2s linear infinite);
-        }
-        
-        .ct-point {
-          
-        }
-      }
-    }
-    
-    .ct-grid {
-      stroke: rgba(0,0,0,.1);
-    }
-  }
-}
-  
-</style>
-<div class="card-panel indigo lighten-5">
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Theme</th>
-      <th>Time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @study_sessions.each do |study_session| %>
-      <tr>
-        <td><%= study_session.date %></td>
-        <td><%= study_session.theme.description %></td>
-        <td><%= study_session.theme.minutes %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+ <div class="col s6">
+    <div class="card-panel indigo lighten-5">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Theme</th>
+          <th>Time</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @study_sessions.each do |study_session| %>
+          <tr>
+            <td><%= study_session.date %></td>
+            <td><%= study_session.theme.description %></td>
+            <td><%= study_session.theme.minutes %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+ </div>
+  <div class="col s6">
+    <div class="card-panel indigo lighten-5">
+      <div class="ct-chart ct-golden-section"></div>
+    </div>
+  </div>
 </div>
-<div class="ct-chart ct-golden-section"></div>
-
-<h1>Build awesome responsive charts with Chartist.js</h1>
-<p class="tagline">Resize your browser to see responsive behavior!</p>
-<div class="container">
-  <div id="chartist-chart" class="ct-chart"></div>
-</div>
-<a class="button" href="https://github.com/gionkunz/chartist-js" target="_blank">Contribute to Chartist.js</a>
-<p>We need contribution in order to make Chartist.js more awesome and reliable!</p>
 
 <script>
-var data = {
-  labels: ['1', '2', '3', '4', '5', '6'],
+new Chartist.Line('.ct-chart', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
   series: [
-    {
-      data: [1, 2, 3, 5, 8, 13]
-    },
-    {
-      data: [0, 3, 5, 4, 3, 11]
-    },
-    {
-      data: [3, 5, 9, 7, 4, 2]
-    }
+    [1, 3, 4, 5, 6]
   ]
-};
-
-var options = {
-  chartPadding: 5,
-  axisX: {
-    offset: 10,
-    labelInterpolationFnc: function(value) {
-      return 'Week ' + value;
-    }
-  },
-  axisY: {
-    offset: 10
+}, {
+  fullWidth: true,
+  chartPadding: {
+    right: 40
   }
-};
-
-var responsiveOptions = [
-  ['screen and (min-width: 641px) and (max-width: 1024px)', {
-    showPoint: false,
-    lineSmooth: false
-  }],
-  ['screen and (max-width: 640px)', {
-    showLine: false,
-    axisX: {
-      labelInterpolationFnc: function(value) {
-        return 'W' + value;
-      }
-    }
-  }]
-];
-
-var chart = Chartist('#chartist-chart', data, options, responsiveOptions);
-
-$(window).on('resize', function() {
-  chart.update();
 });
 </script>

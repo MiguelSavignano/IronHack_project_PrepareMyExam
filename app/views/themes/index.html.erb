@@ -1,3 +1,4 @@
+<link  rel="stylesheet" type="text/css" href="/assets/css/line_chart_animation.css">
 <div class="row">
  <div class="col s6">
 <div class="card-panel indigo lighten-5">
@@ -40,7 +41,7 @@
     contents.push('<%= theme.description %>');
   <% end %>
 
-  new Chartist.Bar('.ct-chart', {
+  var chart = new Chartist.Bar('.ct-chart', {
   labels: contents,
   series: [
     <%=@exam.themes.map{|theme|theme.minutes}%>
@@ -53,6 +54,22 @@
     offset: 70
   }
 });
+
+chart.on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.animate({
+      x2: {
+        id: 'grow',
+        dur: 2000,
+        from: data.x1,
+        to: data.x2,
+        easing: Chartist.Svg.Easing.easeOutQuint
+      }
+    }, false);
+  }
+});
+
+
   </script>
  
   
