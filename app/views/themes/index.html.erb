@@ -19,7 +19,7 @@
           <td><%= theme.description %></td>
           <td><%= theme.minutes %></td>
           <td>
-          <%= link_to "Upload note",edit_school_course_subject_exam_theme_path(@school,@course,@subject,@exam,theme)%></td> 
+          <%= link_to "Upload note", new_theme_note_path(theme) %>
         </tr>
       <% end %>
     </tbody>

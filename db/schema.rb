@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150526111412) do
   add_index "exams_themes", ["theme_id"], name: "index_exams_themes_on_theme_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
+    t.integer  "theme_id"
     t.string   "name"
     t.string   "attachment"
     t.datetime "created_at", null: false

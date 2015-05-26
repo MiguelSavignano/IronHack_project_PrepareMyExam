@@ -1,10 +1,19 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_filter :load_parent, only: [:new, :index]
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    # binding.pry
+    @notes = Note.where(theme:@theme)
+  end
+
+  def index_exam_notes
+    @exam = Exam.find(params[:exam_id])
+    @themes_note = @exam.themes.map{|theme| theme.notes}
+    @notes = @themes_note.flatten
+    render :index
   end
 
   # GET /notes/1
@@ -14,6 +23,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
+    # binding.pry
     @note = Note.new
   end
 
@@ -24,11 +34,12 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
+    # binding.pry
     @note = Note.new(note_params)
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        format.html { redirect_to theme_notes_path, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -69,6 +80,14 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:name, :attachment)
+      note_params = params.require(:note).permit(:name, :attachment, :theme_id)
+      note_params[:theme_id] = params[:theme_id]
+      note_params
     end
+
+    private
+    def load_parent
+      @theme = Theme.find(params[:theme_id]) 
+    end
+
 end

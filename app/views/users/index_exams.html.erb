@@ -34,7 +34,7 @@
 					<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Add sudy session" href="<%= new_school_course_subject_exam_study_session_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-image-loupe"></i>   </a>
 			        </td>
 			        <td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View Themes" href="<%= school_course_subject_exam_themes_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-action-description"></i>   </a></td>
-			        <td><a href="<%= school_course_subject_exam_themes_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-av-my-library-books"></i>   </a></td>
+			        <td><a href="<%= exam_notes_path(exam)  %>"><i class="small mdi-av-my-library-books"></i>   </a></td>
 				</tr>
 			</tbody>
 		<% end %>

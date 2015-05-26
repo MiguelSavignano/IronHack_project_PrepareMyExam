@@ -1,7 +1,60 @@
-<h1>Index Subjects</h1>	
+<ul id="staggered-test">
+	<ol>
+		<div class="row">	
+			<% @subjects.each do |subject| %>
+			    <div class="col s4">
+			      	<%=subject.name %>	     
+					<ul class="collapsible" data-collapsible="accordion">
+						<% subject.themes.each do |theme| %>
+							<li>
+							  	<div class="collapsible-header"><i class="mdi-action-description"></i><%=theme.description %> </div>
+							  	<div class="collapsible-body">
+									<ul class="collapsible" data-collapsible="accordion">
+										<li>
+										  <div class="collapsible-header">
+										  	<i class="mdi-content-add-circle-outline"></i>
+       									    <%= link_to "Add Note", new_theme_note_path(theme) %>
+										  </div>
+										</li>
+										<% theme.notes.each do |note| %>
+											<li>
+											  <div class="collapsible-header">
+											  	<i class="mdi-hardware-keyboard-arrow-right"></i>
+												<a href="<%= note.attachment %>">
+												  <i class="small mdi-action-description"></i>
+												</a>
+												<%= note.name %>
+											  </div>
+										  	</li>
+				   						<%end %>
+									</ul>
+								</div>
+							</li>
+			   			<%end %>
+					</ul>  
+			 	</div>   
+		    <%end %>
+	    </div> 
+	</ol>
+</ul>
 
-		<% @subjects.each do |subject| %>
-	        <p> <%=subject.name %> <%= link_to 'Show exams', school_course_subject_exams_path(school,course,subject) %> </p>
-		<% end %>
-	<% end %>
-<% end %>
+ <script>
+  $( document ).ready(function() {
+    Materialize.showStaggeredListY('#staggered-test')
+  });
+
+  Materialize.showStaggeredListY = function(selector) {
+    var time = 0;
+    $(selector).find('ol').velocity(
+        { translateY: "20px"},
+        { duration: 2 });
+
+    $(selector).find('ol').each(function() {
+      $(this).velocity(
+        { opacity: "1", translateY: "0"},
+        { duration: 800, delay: time, easing: [80, 10] });
+      time += 120;
+    });
+  };
+  </script>
+	
