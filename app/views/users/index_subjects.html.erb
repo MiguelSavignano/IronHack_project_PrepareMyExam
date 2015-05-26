@@ -2,8 +2,11 @@
 	<ol>
 		<div class="row">	
 			<% @subjects.each do |subject| %>
-			    <div class="col s4">
-			      	<%=subject.name %>	     
+			    <div class="col s12 m12 l4">
+			    	<blockquote>	
+			    	  <%= subject.course.name %> <i class="mdi-navigation-chevron-right"></i>
+			    	  <%= subject.name %> <i class="mdi-navigation-chevron-right"></i>
+			    	</blockquote>
 					<ul class="collapsible" data-collapsible="accordion">
 						<% subject.themes.each do |theme| %>
 							<li>
