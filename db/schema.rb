@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150526111412) do
 
   create_table "notes", force: :cascade do |t|
     t.integer  "theme_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "attachment"
     t.datetime "created_at", null: false

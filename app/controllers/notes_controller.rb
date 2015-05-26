@@ -10,9 +10,7 @@ class NotesController < ApplicationController
   end
 
   def index_exam_notes
-    @exam = Exam.find(params[:exam_id])
-    @themes_note = @exam.themes.map{|theme| theme.notes}
-    @notes = @themes_note.flatten
+    @notes_user, @notes_public = Note.get_notes(params[:exam_id],current_user)
     render :index
   end
 
@@ -82,6 +80,7 @@ class NotesController < ApplicationController
     def note_params
       note_params = params.require(:note).permit(:name, :attachment, :theme_id)
       note_params[:theme_id] = params[:theme_id]
+      note_params[:user_id] = current_user.id
       note_params
     end
 

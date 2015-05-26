@@ -10,7 +10,26 @@
   </thead>
 
   <tbody>
-    <% @notes.each do |note| %>
+    <% @notes_user.each do |note| %>
+      <tr>
+        <td><%= note.theme.description %></td>
+        <td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View Note" href="<%= note.attachment %>"><i class="small mdi-action-description"></i></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notes_public.each do |note| %>
       <tr>
         <td><%= note.theme.description %></td>
         <td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View Note" href="<%= note.attachment %>"><i class="small mdi-action-description"></i></a></td>

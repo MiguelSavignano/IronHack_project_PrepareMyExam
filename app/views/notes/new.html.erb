@@ -1,9 +1,13 @@
 <h1>New Note</h1>
 
 <%= form_for [@theme,@note], html: { multipart: true } do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :attachment %>
-    <%= f.file_field :attachment %>
-    <%= f.submit "Save", class: "btn" %>
+	<div class="file-field input-field">
+	    <%= f.text_field :name, class: "file-path validate" %>
+	    <%= f.label :attachment %>
+	    <div class="btn">
+    	    <span>File</span>
+	    	<%= f.file_field :attachment %>
+		</div>
+	</div>
+	    <%= f.submit "Save", class: "btn" %>
  <% end %>
