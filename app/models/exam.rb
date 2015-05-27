@@ -12,7 +12,7 @@ end
 
 def sum_study_sessions(current_user)
 	@study_sessions = 	StudySession.where(user:current_user,exam:self)
-	@study_sessions.reduce(0){|sum,study_session|sum+study_session.minutes}
+	@study_sessions.sum(:minutes)
 end
 
 def days_before
@@ -31,5 +31,8 @@ def notes_public(current_user)
     self.themes.map(&:notes).flatten - notes_user(current_user)
 end
 
+def themes_array
+	self.themes.map { |theme| [theme.description, theme.id] }
+end
 end
 

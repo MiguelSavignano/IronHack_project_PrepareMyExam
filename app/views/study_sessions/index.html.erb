@@ -49,7 +49,7 @@ var dates = [];
 new Chartist.Line('.ct-chart', {
   labels: dates,
   series: [
-    <%=@study_sessions.map{|study_session|study_session.minutes}%>
+    <%=@study_sessions_minutes%>
   ]
 }, {
   fullWidth: true,

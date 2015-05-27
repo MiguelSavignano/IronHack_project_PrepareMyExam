@@ -6,6 +6,7 @@ class StudySessionsController < ApplicationController
   # GET /study_sessions.json
   def index
     @study_sessions = StudySession.where(user:current_user,exam:@exam).order(:date)
+    @study_sessions_minutes = @study_sessions.map{|study_session|study_session.minutes}
   end
 
   # GET /study_sessions/1_

@@ -22,7 +22,7 @@
                 <% end %>
               </tbody>
             </table>
-            <p>Total minutes: <%=@themes_sum %></p>
+            <p><b>Total minutes:</b> <%=@themes_sum %></p>
           </div>
         </li>
        </ul>
@@ -37,6 +37,7 @@
  $( document ).ready(function() {
     Materialize.showStaggeredList('#staggered-test')
   });
+
   var contents = [];
   <% @exam.themes.each do |theme| %>
     contents.push('<%= theme.description %>');
@@ -45,7 +46,7 @@
   var chart = new Chartist.Bar('.ct-chart', {
   labels: contents,
   series: [
-    <%=@exam.themes.map{|theme|theme.minutes}%>
+    <%=@themes_minutes%>
   ]
 }, {
   seriesBarDistance: 10,

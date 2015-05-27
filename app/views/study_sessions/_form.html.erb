@@ -18,8 +18,7 @@
     <%= f.date_field :date, :class => "datepicker", required:""%>
   </div>
  <div class="input-field">
-    <% themes_array = @exam.themes.map { |theme| [theme.description, theme.id] } %>
-    <%= select_tag(:theme_id, options_for_select(themes_array)) %>
+    <%= select_tag(:theme_id, options_for_select(@exam.themes_array)) %>
   </div>
    <div class="input-field">
     <i class="mdi-device-access-time prefix"></i>
@@ -33,7 +32,6 @@
 <script>
       $('#pick-a-time').lolliclock({autoclose:true});
 </script>
-
 <script> 
 $(document).ready(function() {
     $('select').material_select();

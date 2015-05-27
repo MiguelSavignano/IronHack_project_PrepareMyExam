@@ -2,18 +2,12 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
   before_filter :load_parent
 
-  # def bars_data
-  #   descriptions = Theme.all.map{|theme|theme.description} 
-  #   minutes = Theme.all.map{|theme|theme.minutes} 
-  #   sum_minutes = Theme.all.reduce(0){|sum,theme|sum+theme.minutes} 
-  #   data = {descriptions:descriptions, minutes:minutes,sum_minutes:sum_minutes}
-  #   render json:data
-  # end
   # GET /themes
   # GET /themes.json
   def index
    @themes = @exam.themes.order(:id)
    @themes_sum = @exam.themes.sum(:minutes)
+   @themes_minutes = @exam.themes.map{|theme|theme.minutes}
   end
 
   # GET /themes/1
