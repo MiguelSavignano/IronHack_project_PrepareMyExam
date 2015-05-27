@@ -1,0 +1,23 @@
+<li>
+  	<div class="collapsible-header"><i class="mdi-action-description"></i><%=theme.description %> </div>
+  	<div class="collapsible-body">
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+			  <div class="collapsible-header">
+			  	<i class="mdi-content-add-circle-outline"></i>
+				    <%= link_to "Add Note", new_theme_note_path(theme) %>
+			  </div>
+			</li>
+				<%= render partial: "note", collection: theme.notes_user(current_user) %>
+			<% unless theme.notes_public(current_user).empty? %>
+				<li>
+				  <div class="collapsible-header">
+				  	<i class="mdi-file-cloud-queue"></i>
+					     <span>Public notes</span> 
+				  </div>
+				</li>
+					<%= render partial: "note", collection: theme.notes_public(current_user) %>
+			<% end %>
+		</ul>
+	</div>
+</li>
