@@ -11,9 +11,17 @@ def sum_themes
 end
 
 def sum_study_sessions(current_user)
-	StudySession.where(user:current_user,exam:self).reduce(0){|sum,x|sum+x.minutes}
+	@study_sessions = 	StudySession.where(user:current_user,exam:self)
+	@study_sessions.reduce(0){|sum,study_session|sum+study_session.minutes}
 end
 
+def days_before
+	(self.date - Date.today).to_i
+end
+
+def study_percent(current_user)
+	self.sum_study_sessions(current_user)*100 / self.sum_themes
+end
 
 end
 

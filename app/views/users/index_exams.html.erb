@@ -1,33 +1,36 @@
 <ul id="staggered-test">
 <li>
 	<% @subjects.each do |subject| %>
-
-<div class="card-panel indigo lighten-5">
-		<blockquote>	
-		 <b ><%= subject.course.school.name %></b> <i class="mdi-navigation-chevron-right"></i>
-		 <%= subject.course.name %> <i class="mdi-navigation-chevron-right"></i>
-		 <%= subject.name %> <i class="mdi-navigation-chevron-right"></i>
-		</blockquote>
-		<table class="bordered">
-		  <thead>
-		  <tr>
-		    <th>Exam description</th>
-		    <th>Themes estimate time </th>
-		    <th>Minutes Study</th>
-		    <th>Study %</th>
-		    <th>Days before</th>
-		    <th>Study session</th>
-		    <th>Themes</th>
-		    <th>Themes notes</th>
-		  </tr>
-		 </thead>
-		<%= render partial: "exam", collection: subject.exams, locals: {subject:subject} %>
-		</table>
-</div>
+		<div class="card-panel indigo lighten-5">
+			<blockquote>	
+			 <b ><%= subject.course.school.name %></b> 
+			 <i class="mdi-navigation-chevron-right"></i>
+			 <%= subject.course.name %>
+			 <i class="mdi-navigation-chevron-right"></i>
+			 <%= subject.name %>
+			 <i class="mdi-navigation-chevron-right"></i>
+			</blockquote>
+			<table class="bordered">
+			 <thead>
+			  <tr>
+			    <th>Exam description</th>
+			    <th>Themes estimate time </th>
+			    <th>Minutes Study</th>
+			    <th>Study %</th>
+			    <th>Days before</th>
+			    <th>Study session</th>
+			    <th>Themes</th>
+			    <th>Themes notes</th>
+			  </tr>
+			 </thead>
+			 <%= render partial: "exam", collection: subject.exams, locals: {subject:subject} %>
+			</table>
+		</div>
 	<% end %>
 </li>
 </ul>
- <script>
+
+<script>
   $( document ).ready(function() {
     Materialize.showStaggeredListY('#staggered-test')
   });
@@ -45,7 +48,5 @@
       time += 120;
     });
   };
-
-
-  </script>
+</script>
 	

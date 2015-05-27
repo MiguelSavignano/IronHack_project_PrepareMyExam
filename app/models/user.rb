@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   has_many :study_sessions
   has_many :notes
-
+  
   def first_exam
     nested_exams_array = self.subjects.map{|s|s.exams.where("date >= ?", Date.today)}
     exams_array = nested_exams_array.flatten

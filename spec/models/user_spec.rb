@@ -30,9 +30,6 @@ RSpec.describe User, type: :model do
 
 	    @miguel.subjects << @uned_fisica
 	  }
-
-	  
-
 	  it 'user first_exam' do
 		expect(@miguel.first_exam).to eq @uned_fisica_exams.first
 	  end
