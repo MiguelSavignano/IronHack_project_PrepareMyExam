@@ -74,16 +74,10 @@ class StudySessionsController < ApplicationController
       study_session_params.merge!(theme_id:params[:theme_id])
       study_session_params.merge!(exam_id:params[:exam_id])
       study_session_params.merge!(user_id:current_user.id)
-      minutes = to_minutes(params[:study_session][:minutes])
+      minutes = (params[:study_session][:minutes]).to_minutes
       study_session_params.merge!(minutes:minutes)
     end
-
-    def to_minutes(hours_minutes_string)
-      hours=hours_minutes[0..1].to_i
-      minutes=hours_minutes[3..4].to_i
-      minutes = minutes + hours*60
-    end
-
+    
     private
     def load_parent
       @school = School.find(params[:school_id])
