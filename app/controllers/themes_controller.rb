@@ -78,8 +78,8 @@ class ThemesController < ApplicationController
    private
     def load_parent
       @school = School.find(params[:school_id])
-      @course = School.find(params[:school_id]).courses.find(params[:course_id])
-      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
+      @course = @school.courses.find(params[:course_id])
+      @subject = @course.subjects.find(params[:subject_id])
       @exam = @subject.exams.find(params[:exam_id]) 
     end
     

@@ -71,16 +71,14 @@ class StudySessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_session_params
       study_session_params=params.require(:study_session).permit(:date, :exam_id, :theme_id, :minutes)
-      hours_minutes=params[:study_session][:minutes]
-      hours_minutes = to_minutes(hours_minutes)
-      study_session_params[:minutes]= hours_minutes
-      study_session_params[:exam_id]= params[:exam_id]
-      study_session_params[:theme_id]= params[:theme_id]
-      study_session_params[:user_id]= current_user.id
-      study_session_params  
+      study_session_params.merge!(theme_id:params[:theme_id])
+      study_session_params.merge!(exam_id:params[:exam_id])
+      study_session_params.merge!(user_id:current_user.id)
+      minutes = to_minutes(params[:study_session][:minutes])
+      study_session_params.merge!(minutes:minutes)
     end
 
-    def to_minutes(hours_minutes)
+    def to_minutes(hours_minutes_string)
       hours=hours_minutes[0..1].to_i
       minutes=hours_minutes[3..4].to_i
       minutes = minutes + hours*60
@@ -88,10 +86,10 @@ class StudySessionsController < ApplicationController
 
     private
     def load_parent
-      @exam = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id]).exams.find(params[:exam_id])
-      @subject = School.find(params[:school_id]).courses.find(params[:course_id]).subjects.find(params[:subject_id])
-      @course = School.find(params[:school_id]).courses.find(params[:course_id])
       @school = School.find(params[:school_id])
+      @course = @school.courses.find(params[:course_id])
+      @subject = @course.subjects.find(params[:subject_id])
+      @exam = @subject.exams.find(params[:exam_id])
     end
 
     

@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-  before_filter :load_parent, only: [:new, :index]
+  before_filter :load_parent_exam, only: [:index]
+  before_filter :load_parent_theme, only: [:new]
 
   # GET /notes
   # GET /notes.json
@@ -79,14 +80,11 @@ class NotesController < ApplicationController
     end
 
     private
-    def load_parent
-      if params[:theme_id]
-        @theme = Theme.find(params[:theme_id])
-        @exam = @theme.exams.first
-      end
-       
-      @exam = Exam.find(params[:exam_id]) if params[:exam_id]
-
+    def load_parent_theme
+      @theme = Theme.find(params[:theme_id])
     end
 
+    def load_parent_exam
+      @exam = Exam.find(params[:exam_id])
+    end
 end

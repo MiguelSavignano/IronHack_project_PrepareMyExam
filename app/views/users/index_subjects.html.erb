@@ -19,7 +19,7 @@
        									    <%= link_to "Add Note", new_theme_note_path(theme) %>
 										  </div>
 										</li>
-										<% theme.notes.each do |note| %>
+										<% theme.notes_user(current_user).each do |note| %>
 											<li>
 											  <div class="collapsible-header">
 											  	<i class="mdi-hardware-keyboard-arrow-right"></i>
