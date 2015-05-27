@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many :notes
 
   def first_exam
-    self.subjects.map{|s|s.exams.where("date >= ?", Date.today)}.flatten.sort{ |a,b| a.date<=>b.date}.first
+    nested_exams_array = self.subjects.map{|s|s.exams.where("date >= ?", Date.today)}
+    exams_array = nested_exams_array.flatten
+    first_exam = exams_array.sort{ |a,b| a.date<=>b.date}.first
   end
 
   def all_study_session

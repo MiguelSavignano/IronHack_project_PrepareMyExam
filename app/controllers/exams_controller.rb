@@ -1,7 +1,7 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_filter :load_parent
+  before_filter :load_parent 
 
   # GET /exams
   # GET /exams.json
@@ -82,7 +82,7 @@ class ExamsController < ApplicationController
     private
     def load_parent
       @school = current_user.schools.find(params[:school_id])
-      @course = @school.courses.find(params[:course_id])
+      @course = @subject.course
       @subject = @course.subjects.find(params[:subject_id])
     end
 

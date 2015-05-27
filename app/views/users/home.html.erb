@@ -2,7 +2,8 @@
 <div class="row">
    <div class="col s12 m12 l6">
       <div class="card-panel indigo lighten-5">
-        <%=@first_exam.date %>	
+        <%=@first_exam.date %>  
+        <%=@first_exam.description %>	
       	<%=@first_exam.sum_study_sessions(current_user)*100 /@first_exam.sum_themes %>
       </div>
    </div>

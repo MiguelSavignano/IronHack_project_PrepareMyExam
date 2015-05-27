@@ -413,14 +413,14 @@ uned_fisica_exams = Exam.create([
 	{description:'Parcial 2', date:"2015-07-20".to_date},
 	{description:'Parcial 3', date:"2015-08-15".to_date},
 	{description:'Examen final', date:"2015-09-18".to_date}
-		])
+])
 
 uned_quimica_exams = Exam.create([
 	{description:'Parcial 1', date:"2015-06-10".to_date},
 	{description:'Parcial 2', date:"2015-07-20".to_date},
 	{description:'Parcial 3', date:"2015-08-28".to_date},
 	{description:'Examen final', date:"2015-09-10".to_date}
-		])
+])
 
 uned.courses << uned_informatica
 uc3m.courses << uc3m_derecho
