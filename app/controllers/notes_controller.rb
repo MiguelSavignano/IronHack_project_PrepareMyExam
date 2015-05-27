@@ -5,13 +5,8 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    # binding.pry
-    @notes = Note.where(theme:@theme)
-  end
-
-  def index_exam_notes
-    @notes_user, @notes_public = Note.get_notes(params[:exam_id],current_user)
-    render :index
+    @notes_user = @exam.notes_user(current_user)
+    @notes_public = @exam.notes_public(current_user)
   end
 
   # GET /notes/1
@@ -37,7 +32,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to theme_notes_path, notice: 'Note was successfully created.' }
+        format.html { redirect_to exams_path, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -65,7 +60,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to exams_path, notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,7 +81,13 @@ class NotesController < ApplicationController
 
     private
     def load_parent
-      @theme = Theme.find(params[:theme_id]) 
+      if params[:theme_id]
+        @theme = Theme.find(params[:theme_id])
+        @exam = @theme.exams.first
+      end
+       
+      @exam = Exam.find(params[:exam_id]) if params[:exam_id]
+
     end
 
 end

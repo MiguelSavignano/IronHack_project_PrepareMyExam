@@ -11,4 +11,8 @@ class Note < ActiveRecord::Base
 	    notes_public = notes - notes_user
 	    return notes_user, notes_public
 	end
+
+	def note_user(current_user)
+		self.user_id == current_user.id
+	end
 end

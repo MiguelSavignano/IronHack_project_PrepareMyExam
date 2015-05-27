@@ -13,6 +13,7 @@ class ThemesController < ApplicationController
   # GET /themes.json
   def index
    @themes = @exam.themes.order(:id)
+   @themes_sum = @exam.themes.sum(:minutes)
   end
 
   # GET /themes/1

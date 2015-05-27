@@ -23,5 +23,13 @@ def study_percent(current_user)
 	self.sum_study_sessions(current_user)*100 / self.sum_themes
 end
 
+def notes_user(current_user)
+    self.themes.map(&:notes).flatten.select{|note| note.user_id == current_user.id}
+end
+
+def notes_public(current_user)
+    self.themes.map(&:notes).flatten - notes_user(current_user)
+end
+
 end
 
