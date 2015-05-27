@@ -30,6 +30,25 @@
 											  </div>
 										  	</li>
 				   						<%end %>
+										<% unless theme.notes_public(current_user).empty? %>
+											<li>
+											  <div class="collapsible-header">
+											  	<i class="mdi-file-cloud-queue"></i>
+	       									     <span>Public notes</span> 
+											  </div>
+											</li>
+										<% end %>
+										<% theme.notes_public(current_user).each do |note| %>
+											<li>
+											  <div class="collapsible-header">
+											  	<i class="mdi-hardware-keyboard-arrow-right"></i>
+												<a href="<%= note.attachment %>" target="_blank">
+												  <i class="small mdi-action-description"></i>
+												</a>
+												<span class="truncate"><%= note.name %></span>
+											  </div>
+										  	</li>
+				   						<%end %>
 									</ul>
 								</div>
 							</li>

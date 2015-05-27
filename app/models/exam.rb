@@ -28,7 +28,7 @@ def notes_user(current_user)
 end
 
 def notes_public(current_user)
-    self.themes.map(&:notes).flatten - notes_user(current_user)
+    self.themes.map(&:notes).flatten.select{|note| note.user_id != current_user.id}
 end
 
 def themes_array

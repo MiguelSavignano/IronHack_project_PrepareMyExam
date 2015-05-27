@@ -7,4 +7,8 @@ class Theme < ActiveRecord::Base
 	def notes_user(current_user)
 		self.notes.select{|note| note.user_id == current_user.id}
 	end
+
+	def notes_public(current_user)
+		self.notes.select{|note| note.user_id != current_user.id}
+	end
 end
