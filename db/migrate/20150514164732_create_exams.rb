@@ -1,7 +1,7 @@
 class CreateExams < ActiveRecord::Migration
   def change
     create_table :exams do |t|
-      t.integer :subject_id	
+      t.belongs_to :subject, index: true	
       t.text :description
       t.date :date
 

@@ -27,5 +27,7 @@ class UsersController < ApplicationController
 
 	def home
 		@user_name = current_user.email
+		@first_exam = current_user.first_exam
+		@study_sessions = current_user.study_sessions.order(:date)
 	end
 end

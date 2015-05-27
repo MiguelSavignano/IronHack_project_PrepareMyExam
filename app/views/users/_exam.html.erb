@@ -1,0 +1,17 @@
+
+			<tbody>
+			    <tr>
+			    	<td> <b><%=exam.description %></b> <span style="font-size: 75%"><%=exam.date %></span>  </td>
+			    	<td> <%=exam.sum_themes %>  </td>
+			    	<td> <%=exam.sum_study_sessions(current_user) %>  </td>
+			    	<td> <%=exam.sum_study_sessions(current_user)*100 /exam.sum_themes %>  </td>
+			    	<td> <%=(exam.date - Date.today).to_i  %>  </td>
+			
+			        <td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View study sessions" href="<%= school_course_subject_exam_study_sessions_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-action-visibility"></i></a>
+					<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Add sudy session" href="<%= new_school_course_subject_exam_study_session_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-image-loupe"></i>   </a>
+			        </td>
+			        <td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View Themes" href="<%= school_course_subject_exam_themes_path(subject.course.school,subject.course,subject,exam)  %>"><i class="small mdi-action-description"></i>   </a></td>
+			        <td><a href="<%= exam_notes_path(exam)  %>"><i class="small mdi-av-my-library-books"></i>   </a></td>
+				</tr>
+			</tbody>
+	
