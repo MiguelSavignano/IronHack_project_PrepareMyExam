@@ -19,17 +19,7 @@
        									    <%= link_to "Add Note", new_theme_note_path(theme) %>
 										  </div>
 										</li>
-										<% theme.notes_user(current_user).each do |note| %>
-											<li>
-											  <div class="collapsible-header">
-											  	<i class="mdi-hardware-keyboard-arrow-right"></i>
-												<a href="<%= note.attachment %>" target="_blank">
-												  <i class="small mdi-action-description"></i>
-												</a>
-												<span class="truncate"><%= note.name %></span>
-											  </div>
-										  	</li>
-				   						<%end %>
+ 										<%= render partial: "note", collection: theme.notes_user(current_user) %>
 										<% unless theme.notes_public(current_user).empty? %>
 											<li>
 											  <div class="collapsible-header">
@@ -37,18 +27,8 @@
 	       									     <span>Public notes</span> 
 											  </div>
 											</li>
+ 											<%= render partial: "note", collection: theme.notes_public(current_user) %>
 										<% end %>
-										<% theme.notes_public(current_user).each do |note| %>
-											<li>
-											  <div class="collapsible-header">
-											  	<i class="mdi-hardware-keyboard-arrow-right"></i>
-												<a href="<%= note.attachment %>" target="_blank">
-												  <i class="small mdi-action-description"></i>
-												</a>
-												<span class="truncate"><%= note.name %></span>
-											  </div>
-										  	</li>
-				   						<%end %>
 									</ul>
 								</div>
 							</li>
