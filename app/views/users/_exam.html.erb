@@ -2,9 +2,9 @@
 <tbody>
     <tr>
     	<td> <b><%=exam.description %></b> <span style="font-size: 75%"><%=exam.date %></span>  </td>
-    	<td> <%=exam.sum_themes %>  </td>
-    	<td> <%=exam.sum_study_sessions(current_user) %>  </td>
-    	<td> <%=exam.study_percent(current_user)%>  </td>
+    	<td> <%=exam.sum_themes.to_hours %>  </td>
+    	<td> <%=exam.sum_study_sessions(current_user).to_hours %>  </td>
+    	<td> <%=exam.study_percent(current_user)%> % </td>
     	<td> <%=exam.days_before  %>  </td>
         <td>
             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="View study sessions" href="<%= school_course_subject_exam_study_sessions_path(subject.course.school,subject.course,subject,exam)  %>">
