@@ -36,25 +36,11 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript" src="/assets/js/animate_panel_to_right.js"></script>
+<script type="text/javascript" src="/assets/js/draw_chartist_line_study_sessions.js"></script>
 <script>
-$( document ).ready(function() {
-  Materialize.showStaggeredList('#staggered-test')
-});
-
-var dates = [];
-  <% @study_sessions.each do |theme| %>
-    dates.push('<%= theme.date %>');
-  <% end %>
-new Chartist.Line('.ct-chart', {
-  labels: dates,
-  series: [
-    <%=@study_sessions_minutes%>
-  ]
-}, {
-  fullWidth: true,
-  chartPadding: {
-    right: 40
-  }
+$.getJSON(document.URL, function (study_sessions) {
+    draw_chartist_line_study_sessions(study_sessions);
 });
 </script>
+
