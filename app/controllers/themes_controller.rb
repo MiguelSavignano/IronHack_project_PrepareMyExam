@@ -82,5 +82,5 @@ class ThemesController < ApplicationController
       @subject = @course.subjects.find(params[:subject_id])
       @exam = @subject.exams.find(params[:exam_id]) 
     end
-    
+
 end

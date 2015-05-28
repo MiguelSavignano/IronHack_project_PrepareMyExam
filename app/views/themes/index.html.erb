@@ -33,45 +33,46 @@
      </div>
 </div>
 
- <script>
- $( document ).ready(function() {
-    Materialize.showStaggeredList('#staggered-test')
+<script>
+$( document ).ready(function() {
+  Materialize.showStaggeredList('#staggered-test')
+});
+$.getJSON(document.URL, function (themes) {
+    draw_chart(themes);
+})
+
+function draw_chart(themes){
+    var themes_minutes = themes.map(function(theme){return theme.minutes;});
+    var themes_descriptions = themes.map(function(theme){return theme.description;});
+
+    var chart = new Chartist.Bar('.ct-chart', {
+    labels: themes_descriptions,
+    series: [
+      themes_minutes
+    ]
+  }, {
+    seriesBarDistance: 10,
+    reverseData: true,
+    horizontalBars: true,
+    axisY: {
+      offset: 70
+    }
+  });
+  chart.on('draw', function(data) {
+    if(data.type === 'bar') {
+      data.element.animate({
+        x2: {
+          id: 'grow',
+          dur: 2000,
+          from: data.x1,
+          to: data.x2,
+          easing: Chartist.Svg.Easing.easeOutQuint
+        }
+      }, false);
+    }
   });
 
-  var contents = [];
-  <% @exam.themes.each do |theme| %>
-    contents.push('<%= theme.description %>');
-  <% end %>
-
-  var chart = new Chartist.Bar('.ct-chart', {
-  labels: contents,
-  series: [
-    <%=@themes_minutes%>
-  ]
-}, {
-  seriesBarDistance: 10,
-  reverseData: true,
-  horizontalBars: true,
-  axisY: {
-    offset: 70
-  }
-});
-
-chart.on('draw', function(data) {
-  if(data.type === 'bar') {
-    data.element.animate({
-      x2: {
-        id: 'grow',
-        dur: 2000,
-        from: data.x1,
-        to: data.x2,
-        easing: Chartist.Svg.Easing.easeOutQuint
-      }
-    }, false);
-  }
-});
-
-
+}
   </script>
  
   
