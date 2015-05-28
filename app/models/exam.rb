@@ -1,9 +1,8 @@
 class Exam < ActiveRecord::Base
 
-	has_many :study_sessions
-	has_and_belongs_to_many :themes
 	belongs_to :subject
-	has_and_belongs_to_many :users
+	has_and_belongs_to_many :themes
+	has_many :study_sessions
 
 
 def sum_themes
