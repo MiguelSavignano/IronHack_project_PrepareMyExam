@@ -8,7 +8,7 @@
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th>Minutes</th>
+                  <th>Estimate time</th>
                   <th colspan="3"></th>
                 </tr>
               </thead>
@@ -16,14 +16,14 @@
                 <% @themes.each do |theme| %>
                   <tr>
                     <td><%= theme.description %></td>
-                    <td><%= theme.minutes %></td>
+                    <td><%= theme.minutes.to_hours %></td>
 
                     <td> <i class="small mdi-content-add-circle-outline"></i><%= link_to "Upload note", new_theme_note_path(theme) %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
-            <p><b>Total minutes:</b> <%=@themes_sum %></p>
+            <p><b>Total minutes:</b> <%=@themes_sum.to_hours %></p>
           </div>
         </li>
        </ul>

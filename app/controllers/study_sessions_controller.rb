@@ -31,7 +31,7 @@ class StudySessionsController < ApplicationController
     @study_session.exam = @exam
     respond_to do |format|
       if @study_session.save
-        format.html { redirect_to [@school,@course,@subject,@exam,@study_session], notice: 'Study session was successfully created.' }
+        format.html { redirect_to exams_path, notice: 'Study session was successfully created.' }
         format.json { render :show, status: :created, location: @study_session }
       else
         format.html { render :new }
