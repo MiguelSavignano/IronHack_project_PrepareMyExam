@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  post '/note/:note_id/rate' => 'notes#rate', as: :rate
   get '/exams' => 'users#index_exams', as: :exams
-  get '/new_notes' => 'notes#new', as: :new_note
     resources :themes do
       resources :notes 
     end

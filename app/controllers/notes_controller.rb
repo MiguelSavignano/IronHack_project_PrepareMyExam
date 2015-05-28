@@ -25,6 +25,12 @@ class NotesController < ApplicationController
   def edit
   end
 
+  def rate
+    # binding.pry
+    @note = Note.find(params[:note_id])
+    @note.rate += 1
+    @note.save
+  end
   # POST /notes
   # POST /notes.json
   def create

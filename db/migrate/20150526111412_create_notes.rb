@@ -5,8 +5,8 @@ class CreateNotes < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.string :attachment
-      t.boolean :public
-      t.integer :rate
+      t.boolean :public, :default => false
+      t.integer :rate, :default => 0
       t.timestamps null: false
     end
   end

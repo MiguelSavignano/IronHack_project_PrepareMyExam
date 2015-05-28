@@ -6,7 +6,7 @@
     <br>
      <span style="font-size: 75%"><%=note.created_at %></span> 
   </p>
-  <a href="#!" class="secondary-content">
+  <a href="#<%=note.id %>" class="secondary-content" onclick="post(<%=note.id %>)">
     <i class="mdi-action-grade"></i>
   </a>
 </li>

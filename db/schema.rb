@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20150526111412) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "attachment"
-    t.boolean  "public"
-    t.integer  "rate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "public",     default: false
+    t.integer  "rate",       default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "schools", force: :cascade do |t|

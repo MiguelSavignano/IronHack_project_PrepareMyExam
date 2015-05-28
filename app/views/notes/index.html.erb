@@ -35,3 +35,21 @@
 </li>
 </ul>
 <script type="text/javascript" src="/assets/js/animate_li_up.js"></script>
+<script>
+  console.log("hola");
+ function post (note_id) {
+    // body...
+    $.ajax({
+        url: '/note/'+note_id+'/rate/',
+        type: 'post',
+  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+
+        data: {"note_id":note_id},
+        success: function (data) {
+          console.log("OKK");
+        }
+      });
+  } 
+
+
+</script>
