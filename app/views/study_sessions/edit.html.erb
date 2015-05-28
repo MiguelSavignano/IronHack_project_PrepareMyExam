@@ -1,6 +1,9 @@
-<h1>Editing Study Session</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', [@school,@course,@subject,@exam,@study_sessions] %> |
-<%= link_to 'Back', school_course_subject_exam_study_sessions_path %>
+<div class="row">
+  <div class="col s4 offset-s4 ">
+      <h4 class="header card-panel pink darken-3"><span class="white-text text-darken-2">Edit study_session</span></h4>
+      <div class="card-panel indigo lighten-5">
+      <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

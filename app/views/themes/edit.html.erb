@@ -1,24 +1,9 @@
-<%= form_for [@school,@course,@subject,@exam,@theme] do |f| %>
-  <% if @theme.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
-
-      <ul>
-      <% @theme.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <div class="file-field input-field">
-      <input class="file-path validate" type="text"/>
-      <div class="btn">
-        <span>File</span>
-        <input type="file" />
+<div class="row">
+  <div class="col s4 offset-s4 ">
+      <div class="card-panel indigo lighten-5">
+      <span class="card-title">Edit Theme</span>
+      <%= render 'form' %>
       </div>
     </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<%end %>
+  </div>
+</div>

@@ -1,13 +1,19 @@
-<h1>New Note</h1>
-
-<%= form_for [@theme,@note], html: { multipart: true } do |f| %>
-	<div class="file-field input-field">
-	    <%= f.text_field :name, class: "file-path validate" %>
-	    <%= f.label :attachment %>
-	    <div class="btn">
-    	    <span>File</span>
-	    	<%= f.file_field :attachment %>
-		</div>
-	</div>
-	    <%= f.submit "Save", class: "btn" %>
- <% end %>
+<div class="row">
+  <div class="col s5 offset-s4 ">
+      <h4 class="header card-panel pink darken-3"><span class="white-text text-darken-2">New Note</span></h4>
+      <div class="card-panel indigo lighten-5">
+      <%= form_for [@theme,@note], html: { multipart: true } do |f| %>
+      	<div class="file-field input-field">
+      	    <%= f.text_field :name, class: "file-path validate" %>
+      	    <%= f.label :attachment %>
+      	    <div class="btn">
+          	    <span>File</span>
+      	    	<%= f.file_field :attachment %>
+      		</div>
+      	</div>
+      	<%= f.submit "Save", class: "btn" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
