@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   has_many :study_sessions
   has_many :notes
+  has_many :exams , through: :subjects
   
   def first_exam
-    nested_exams_array = self.subjects.map{|s|s.exams.where("date >= ?", Date.today)}
-    exams_array = nested_exams_array.flatten
-    first_exam = exams_array.sort{ |a,b| a.date<=>b.date}.first
+    comming_exams = self.exams.where("date >= ?", Date.today)
+    first_exam = comming_exams.order(:date).first
   end
 
   def all_study_session
