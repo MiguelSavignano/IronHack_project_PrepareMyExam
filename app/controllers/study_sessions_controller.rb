@@ -27,11 +27,11 @@ class StudySessionsController < ApplicationController
   def create
     @study_session = StudySession.new(study_session_params)
     @study_session.user = current_user
-    @study_session.theme = @theme
+    @study_session.theme = Theme.find(params[:theme_id])
     @study_session.exam = @exam
     respond_to do |format|
       if @study_session.save
-        format.html { redirect_to exams_path, notice: 'Study session was successfully created.' }
+        format.html { redirect_to school_course_subject_exam_study_sessions_path, notice: 'Study session was successfully created.' }
         format.json { render :show, status: :created, location: @study_session }
       else
         format.html { render :new }

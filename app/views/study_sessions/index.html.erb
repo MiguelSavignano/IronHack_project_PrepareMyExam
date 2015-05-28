@@ -21,7 +21,7 @@
           <tr>
             <td style="transform: translateX(0px); opacity: 1;"><%= study_session.date %></td>
             <td style="transform: translateX(0px); opacity: 1;"><%= study_session.theme.description %></td>
-            <td style="transform: translateX(0px); opacity: 1;"><%= study_session.minutes %></td>
+            <td style="transform: translateX(0px); opacity: 1;"><%= study_session.minutes.to_hours %></td>
           </tr>
         <% end %>
       </tbody>

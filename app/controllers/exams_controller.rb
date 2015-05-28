@@ -29,10 +29,6 @@ class ExamsController < ApplicationController
   def create
     # binding.pry
     @exam = Exam.new(exam_params)
-    id_themes = params["theme"].values.map(&:to_i)
-    themes = Theme.find(id_themes)
-    @exam.themes << themes
-    @subject.exams << @exam
     respond_to do |format|
       if @exam.save
         format.html { redirect_to [@school,@course,@subject,@exam], notice: 'Exam was successfully created.' }

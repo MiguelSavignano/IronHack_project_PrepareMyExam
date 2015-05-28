@@ -24,11 +24,13 @@ def study_percent(current_user)
 end
 
 def notes_user(current_user)
-    self.themes.map(&:notes).flatten.select{|note| note.user_id == current_user.id}
+    themes = self.themes.map(&:notes).flatten
+    themes.select{|note| note.user_id == current_user.id}
 end
 
 def notes_public(current_user)
-    self.themes.map(&:notes).flatten.select{|note| note.user_id != current_user.id && note.public }
+    themes = self.themes.map(&:notes).flatten
+    themes.select{|note| note.user_id != current_user.id && note.public }
 end
 
 def themes_array
