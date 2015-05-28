@@ -471,3 +471,5 @@ miguel.study_sessions << s2
 miguel.study_sessions << s3 
 miguel.study_sessions << s4 
 
+miguel2.subjects << uned_fisica
+miguel2.subjects << uned_quimica

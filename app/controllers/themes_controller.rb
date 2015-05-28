@@ -7,7 +7,6 @@ class ThemesController < ApplicationController
   def index
    @themes = @exam.themes.order(:id)
    @themes_sum = @exam.themes.sum(:minutes)
-   @themes_minutes = @exam.themes.map{|theme|theme.minutes}
   end
 
   # GET /themes/1

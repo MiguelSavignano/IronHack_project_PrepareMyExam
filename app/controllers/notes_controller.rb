@@ -74,7 +74,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      note_params = params.require(:note).permit(:name, :attachment, :theme_id)
+      note_params = params.require(:note).permit(:name, :attachment, :theme_id, :public)
       note_params.merge!(theme_id:params[:theme_id])
       note_params.merge!(user_id:current_user.id)
     end

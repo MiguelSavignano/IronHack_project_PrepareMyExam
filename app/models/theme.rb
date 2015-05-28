@@ -5,10 +5,10 @@ class Theme < ActiveRecord::Base
 	has_and_belongs_to_many :exams
 
 	def notes_user(current_user)
-		self.notes.select{|note| note.user_id == current_user.id}
+		self.notes.select{|note| note.user_id == current_user.id }
 	end
 
 	def notes_public(current_user)
-		self.notes.select{|note| note.user_id != current_user.id}
+		self.notes.select{|note| note.user_id != current_user.id && note.public}
 	end
 end

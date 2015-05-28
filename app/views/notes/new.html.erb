@@ -11,6 +11,10 @@
       	    	<%= f.file_field :attachment %>
       		</div>
       	</div>
+        <div class="field">
+          <%= f.check_box :public %>
+          <%= f.label :public %>
+        </div>
       	<%= f.submit "Save", class: "btn" %>
       <% end %>
       </div>
