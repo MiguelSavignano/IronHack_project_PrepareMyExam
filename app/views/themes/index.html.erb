@@ -39,7 +39,7 @@ $( document ).ready(function() {
 });
 $.getJSON(document.URL, function (themes) {
     draw_chart(themes);
-})
+});
 
 function draw_chart(themes){
     var themes_minutes = themes.map(function(theme){return theme.minutes;});
