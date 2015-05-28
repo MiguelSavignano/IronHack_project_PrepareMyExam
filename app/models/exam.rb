@@ -2,7 +2,7 @@ class Exam < ActiveRecord::Base
 	belongs_to :subject
 	has_and_belongs_to_many :themes
 	has_many :study_sessions
- 	has_many :notes , through: :theme
+ 	has_many :notes , through: :themes
 
 	def sum_themes
 		self.themes.reduce(0){|sum,theme|sum+theme.minutes}
@@ -22,13 +22,11 @@ class Exam < ActiveRecord::Base
 	end
 
 	def notes_user(current_user)
-	    themes = self.themes.map(&:notes).flatten
-	    themes.select{|note| note.user_id == current_user.id}
+	    self.notes.where(user:current_user)
 	end
 
 	def notes_public(current_user)
-	    themes = self.themes.map(&:notes).flatten
-	    themes.select{|note| note.user_id != current_user.id && note.public }
+		self.notes - self.notes.where(user:current_user,public:true)
 	end
 
 	def themes_array
