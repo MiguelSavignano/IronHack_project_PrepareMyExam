@@ -9,7 +9,7 @@ class Exam < ActiveRecord::Base
 	end
 
 	def sum_study_sessions(current_user)
-		study_sessions = 	StudySession.where(user:current_user,exam:self)
+		study_sessions = StudySession.where(user:current_user,exam:self)
 		study_sessions.sum(:minutes)
 	end
 

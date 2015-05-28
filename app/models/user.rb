@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   end
 
   def all_study_session
-    StudySession.where(user:self).order("date ASC")
+    self.study_sessions.order("date ASC")
   end
 end

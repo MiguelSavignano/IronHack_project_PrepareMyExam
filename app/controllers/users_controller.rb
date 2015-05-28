@@ -10,11 +10,6 @@ class UsersController < ApplicationController
 	end
 
 	def generate_exams
-		s = School.where(user_id:1).first
-		s_attributes = s.attributes.except!("id","created_at","updated_at","user_id")
-		new_school = School.new(s_attributes)
-		current_user.schools << new_school
-		redirect_to schools_path
 	end
 
 	def index_exams
@@ -29,5 +24,6 @@ class UsersController < ApplicationController
 		@user_name = current_user.email
 		@first_exam = current_user.first_exam
 		@study_sessions = current_user.study_sessions.order(:date)
+		@study_percent = @first_exam.study_percent(current_user)
 	end
 end

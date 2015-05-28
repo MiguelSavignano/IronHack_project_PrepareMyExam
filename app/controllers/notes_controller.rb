@@ -31,7 +31,7 @@ class NotesController < ApplicationController
     # binding.pry
     @note = Note.new(note_params)
     @note.user = current_user
-    @note.theme = Theme.find(params[:theme_id])
+    @note.theme = @theme
     respond_to do |format|
       if @note.save
         format.html { redirect_to exams_path, notice: 'Note was successfully created.' }

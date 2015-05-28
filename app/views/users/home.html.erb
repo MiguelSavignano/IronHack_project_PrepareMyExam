@@ -38,7 +38,6 @@
         <div  class="ct-chart ct-golden-section" id="chart_pie"></div>
    </div>
 </div>
-
    <div class="col s12 m6 l6">
      <h4 class="header card-panel pink darken-3">
         <span class="white-text text-darken-2">All study sessions time</span>
@@ -47,54 +46,18 @@
        <div class="ct-chart ct-golden-section" id="chart_line"></div>
      </div>
    </div>
-
- 
-
-
-
-
 </div>
+<script type="text/javascript" src="/assets/js/draw_chartist_pie.js"></script>
+<script type="text/javascript" src="/assets/js/draw_chartist_line.js"></script>
+<script>
+  var miguel
+  $.getJSON(document.URL, function (data) {
+      draw_chartist_pie(data.study_percent);
+      draw_chartist_line(data.study_sessions);
+  });
+</script>
  <script>
  $( document ).ready(function() {
     Materialize.showStaggeredList('#staggered-test')
   });
-  
-  function pie(){
- new Chartist.Pie('#chart_pie', {
-  series: [<%=@first_exam.study_percent(current_user)%> ]
-}, {
-  donut: false,
-  donutWidth: 40,
-  startAngle: 270,
-  total: 100,
-  showLabel: true
-});
-  }
-  
-  //*******************************
-  /* Initialize the chart with the above settings */
-  
-function line(){
-  var dates = [];
-    <% @study_sessions.each do |theme| %>
-      dates.push('<%= theme.date %>');
-    <% end %>
-  new Chartist.Line('#chart_line', {
-    labels: dates,
-    series: [
-      <%=@study_sessions.map{|study_session|study_session.minutes}%>
-    ]
-  }, {
-    fullWidth: true,
-    chartPadding: {
-      right: 40
-    }
-  });
-}
-
-
-line();
-pie();
-//************
-
-  </script>
+</script>
