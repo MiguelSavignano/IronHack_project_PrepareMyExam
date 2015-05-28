@@ -3,7 +3,10 @@
   background: #556270;
   font-size: 120%;
 }
-
+.ct-chart .ct-label{
+  font-size: 170%;
+  fill: rgba(255, 255, 255, 0.8);
+}
 @keyframes width-pulse {
   0% {
     stroke-width: 6px

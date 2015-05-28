@@ -1,28 +1,39 @@
 <link  rel="stylesheet" type="text/css" href="/assets/css/line_chart_animation.css">
 <div class="row">
-   <div class="col s12 m12 l6">
+   <div class="col s12 m6 l6">
+      <h4 class="header card-panel pink darken-3">
+        <span class="white-text text-darken-2">Near exam</span>
+      </h4>
       <div class="card-panel indigo lighten-5">
-        <%=@first_exam.date %>  
-        <%=@first_exam.description %>	
-      	<%=@first_exam.sum_study_sessions(current_user)*100 /@first_exam.sum_themes %>
-      </div>
+        <div class="row">
+          <div class="col s4 m4 l4">
+              <label><span class="black-text text-darken-2">Date</span></label>
+              <p><%=@first_exam.date %></p>  
+          </div>
+          <div class="col s4 m4 l4">
+              <label><span class="black-text text-darken-2">Exam</span></label>
+              <p><%=@first_exam.description %></p>  
+          </div>
+          <div class="col s4 m4 l4">
+             <label><span class="black-text text-darken-2"> Hours estimate</span></label>
+             <p><%=@first_exam.sum_themes.to_hours %></p> 
+          </div>
+        </div>
+        <div  class="ct-chart ct-golden-section" id="chart_pie"></div>
    </div>
-   <div class="col s12 m12 l6">
+</div>
+
+   <div class="col s12 m6 l6">
+     <h4 class="header card-panel pink darken-3">
+        <span class="white-text text-darken-2">All study sessions</span>
+     </h4>
      <div class="card-panel indigo lighten-5">
-       <div class="ct-chart ct-golden-section" id="chart2"></div>
-     </div>
-   </div>
-   <div class="col s12 m12 l6">
-     <div class="card-panel indigo lighten-5">
-       <div id="my-chart" class="ct-chart ct-golden-section"></div>
+       <div class="ct-chart ct-golden-section" id="chart_line"></div>
      </div>
    </div>
 
-   <div class="col s12 m12 l6">
-     <div class="card-panel indigo lighten-5">
-       <div id="my-chart2" class="ct-chart ct-golden-section"></div>
-     </div>
-   </div>
+ 
+
 
 
 
@@ -31,55 +42,43 @@
  $( document ).ready(function() {
     Materialize.showStaggeredList('#staggered-test')
   });
-  var contents = [];
-  <% @first_exam.themes.each do |theme| %>
-    contents.push('<%= theme.description %>');
-  <% end %>
-
-    <%=@first_exam.themes.map{|theme|theme.minutes}%>
-
-
-/* Add a basic data series with six labels and values */
-  var data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
-    series: [
-      {
-        data: [1, 2, 3, 5, 8, 13]
-      }
-    ]
-  };
   
-  //*******************************
-  /* Initialize the chart with the above settings */
-  new Chartist.Bar('#my-chart', data);
-
-var dates = [];
-  <% @study_sessions.each do |theme| %>
-    dates.push('<%= theme.date %>');
-  <% end %>
-new Chartist.Line('.ct-chart', {
-  labels: dates,
-  series: [
-    <%=@study_sessions.map{|study_session|study_session.minutes}%>
-  ]
+  function pie(){
+ new Chartist.Pie('#chart_pie', {
+  series: [<%=@first_exam.study_percent(current_user)%> ]
 }, {
-  fullWidth: true,
-  chartPadding: {
-    right: 40
-  }
-});
-
-//************
-new Chartist.Pie('#my-chart2', {
-  labels: ['as','asss'],
-  series: [<%=@first_exam.sum_study_sessions(current_user)*100 /@first_exam.sum_themes %>,100-<%=@first_exam.sum_study_sessions(current_user)*100 /@first_exam.sum_themes %>]
-}, {
-  donut: true,
-  donutWidth: 60,
+  donut: false,
+  donutWidth: 40,
   startAngle: 270,
   total: 100,
   showLabel: true
 });
+  }
+  
+  //*******************************
+  /* Initialize the chart with the above settings */
+  
+function line(){
+  var dates = [];
+    <% @study_sessions.each do |theme| %>
+      dates.push('<%= theme.date %>');
+    <% end %>
+  new Chartist.Line('#chart_line', {
+    labels: dates,
+    series: [
+      <%=@study_sessions.map{|study_session|study_session.minutes}%>
+    ]
+  }, {
+    fullWidth: true,
+    chartPadding: {
+      right: 40
+    }
+  });
+}
 
+
+line();
+pie();
+//************
 
   </script>
