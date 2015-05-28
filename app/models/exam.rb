@@ -9,8 +9,8 @@ class Exam < ActiveRecord::Base
 	end
 
 	def sum_study_sessions(current_user)
-		@study_sessions = 	StudySession.where(user:current_user,exam:self)
-		@study_sessions.sum(:minutes)
+		study_sessions = 	StudySession.where(user:current_user,exam:self)
+		study_sessions.sum(:minutes)
 	end
 
 	def days_before
@@ -29,7 +29,7 @@ class Exam < ActiveRecord::Base
 		self.notes - self.notes.where(user:current_user,public:true)
 	end
 
-	def themes_array
+	def themes_array_for_select
 		self.themes.map { |theme| [theme.description, theme.id] }
 	end
 end
