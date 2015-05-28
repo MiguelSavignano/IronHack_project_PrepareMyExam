@@ -17,7 +17,8 @@
                   <tr>
                     <td><%= theme.description %></td>
                     <td><%= theme.minutes %></td>
-                    <td><%= link_to "Upload note", new_theme_note_path(theme) %></td>
+
+                    <td> <i class="small mdi-content-add-circle-outline"></i><%= link_to "Upload note", new_theme_note_path(theme) %></td>
                   </tr>
                 <% end %>
               </tbody>

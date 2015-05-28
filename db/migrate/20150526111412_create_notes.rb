@@ -6,6 +6,7 @@ class CreateNotes < ActiveRecord::Migration
       t.string :name
       t.string :attachment
       t.boolean :public
+      t.integer :rate
       t.timestamps null: false
     end
   end

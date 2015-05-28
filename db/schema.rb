@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150526111412) do
     t.string   "name"
     t.string   "attachment"
     t.boolean  "public"
+    t.integer  "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

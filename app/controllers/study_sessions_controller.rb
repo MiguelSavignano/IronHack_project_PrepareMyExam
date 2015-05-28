@@ -26,6 +26,9 @@ class StudySessionsController < ApplicationController
   # POST /study_sessions.json
   def create
     @study_session = StudySession.new(study_session_params)
+    @study_session.user = current_user
+    @study_session.theme = @theme
+    @study_session.exam = @exam
     respond_to do |format|
       if @study_session.save
         format.html { redirect_to [@school,@course,@subject,@exam,@study_session], notice: 'Study session was successfully created.' }
@@ -69,13 +72,10 @@ class StudySessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_session_params
-      study_session_params=params.require(:study_session).permit(:date, :exam_id, :theme_id, :minutes)
+      study_session_params=params.require(:study_session).permit(:date, :minutes)
       hour_minutes_string = params[:study_session][:minutes]
       minutes = hour_minutes_string.to_minutes
-      study_session_params.merge!(theme_id:params[:theme_id],
-                                  exam_id:params[:exam_id],
-                                  user_id:current_user.id,
-                                  minutes:minutes)
+      study_session_params.merge!(minutes:minutes)
     end
 
     private

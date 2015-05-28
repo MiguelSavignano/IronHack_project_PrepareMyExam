@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   before_filter :load_parent_exam, only: [:index]
-  before_filter :load_parent_theme, only: [:new]
+  before_filter :load_parent_theme, only: [:new, :create]
 
   # GET /notes
   # GET /notes.json
@@ -30,7 +30,8 @@ class NotesController < ApplicationController
   def create
     # binding.pry
     @note = Note.new(note_params)
-
+    @note.user = current_user
+    @note.theme = Theme.find(params[:theme_id])
     respond_to do |format|
       if @note.save
         format.html { redirect_to exams_path, notice: 'Note was successfully created.' }
@@ -74,12 +75,9 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      note_params = params.require(:note).permit(:name, :attachment, :theme_id, :public)
-      note_params.merge!(theme_id:params[:theme_id])
-      note_params.merge!(user_id:current_user.id)
+      note_params = params.require(:note).permit(:name, :attachment, :public)
     end
 
-    private
     def load_parent_theme
       @theme = Theme.find(params[:theme_id])
     end
