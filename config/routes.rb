@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post '/note/:note_id/rate' => 'notes#rate', as: :rate
+  post '/note/:id/rate' => 'notes#rate', as: :rate
   get '/' => 'users#redirect', as: :redirect 
   get '/home' => 'users#home', as: :home 
   get '/generate_exams' => 'users#generate_exams', as: :generate_exams
