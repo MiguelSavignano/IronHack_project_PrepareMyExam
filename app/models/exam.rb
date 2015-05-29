@@ -26,7 +26,7 @@ class Exam < ActiveRecord::Base
 	end
 
 	def notes_public(current_user)
-		self.notes.where("user_id != ? and public = ?", current_user.id , true)
+		self.notes.where("user_id != ? and public = ?", current_user.id , true).order(:rate)
 	end
 
 	def themes_array_for_select

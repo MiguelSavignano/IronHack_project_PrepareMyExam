@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :rate]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
   before_filter :load_parent_exam, only: [:index]
   before_filter :load_parent_theme, only: [:new, :create]
 
@@ -27,8 +27,12 @@ class NotesController < ApplicationController
 
   def rate
     # binding.pry
+    @note = Note.find(params[:note_id])
     @note.rate += 1
     @note.save
+    respond_to do |format|
+        format.json { render json: @note.errors, status: 200 }
+    end
   end
   # POST /notes
   # POST /notes.json
