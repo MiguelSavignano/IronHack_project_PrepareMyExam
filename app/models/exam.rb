@@ -5,12 +5,7 @@ class Exam < ActiveRecord::Base
  	has_many :notes , through: :themes
 
 	def sum_themes
-		self.themes.reduce(0){|sum,theme|sum+theme.minutes}
-	end
-
-	def sum_study_sessions(current_user)
-		study_sessions = StudySession.where(user:current_user,exam:self)
-		study_sessions.sum(:minutes)
+		self.themes.sum(:minutes)
 	end
 
 	def days_before
@@ -20,13 +15,18 @@ class Exam < ActiveRecord::Base
 	def study_percent(current_user)
 		self.sum_study_sessions(current_user)*100 / self.sum_themes
 	end
+	
+	def sum_study_sessions(current_user)
+		study_sessions = StudySession.where(user:current_user,exam:self)
+		study_sessions.sum(:minutes)
+	end
 
 	def notes_user(current_user)
-	    self.notes.where(user:current_user)
+	    self.notes.where(user:current_user).order(:theme_id)
 	end
 
 	def notes_public(current_user)
-		self.notes.where("user_id != ? and public = ?", current_user.id , true).order(:rate)
+		self.notes.where("user_id != ? and public = ?", current_user.id , true).order(:rate,:theme_id)
 	end
 
 	def themes_array_for_select
