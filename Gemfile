@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
@@ -32,21 +31,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# gem 'chartist-rails', '~> 0.0.1'
+# gem 'chartkick', '~> 1.3.2'
 gem 'devise'
-gem 'chartist-rails', '~> 0.0.1'
-gem 'chartkick', '~> 1.3.2'
 gem 'materialize-sass'
 gem 'carrierwave'
+gem "fog-aws"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
-
-  gem 'byebug'
-
+  gem "rails-erd"
   gem 'pry-rails'
+  gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
