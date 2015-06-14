@@ -36,7 +36,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'materialize-sass'
 gem 'carrierwave'
-gem "fog-aws"
+gem 'fog',        '1.23.0'
+gem 'mini_magick'
+gem 'chartist-rails', '~> 0.0.1'
+gem 'chartkick', '~> 1.3.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
